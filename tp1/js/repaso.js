@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let max = getMax(matriz_random, 0);
     console.log(max);
 
+    let max_min = getMaxParMinImpar(matriz_random, 0, cant_num);
+    console.log(max_min);
+
     /**
      * Función de creación de matriz
      */
@@ -27,19 +30,50 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     /**
-     *  Retorna el valor máximo de una matriz
+     * Función que retorna el valor máximo de una matriz
      */
-    function getMax(mat, ini_num) {
-        let max = ini_num;
+    function getMax(mat, max_ini) {
+        let max = max_ini;
 
         mat.forEach(row => {
-            row.forEach(col => {
-                if(col > max) {
-                    max = col;
+            row.forEach(elem => {
+                if(elem > max) {
+                    max = elem;
                 }
             });
         });
 
         return max
+    }
+
+    /**
+     * Función que retorna el valor máximo contenido en las filas pares 
+     * y el valor mínimo en las filas impares
+     */
+    function getMaxParMinImpar(mat, max_ini, min_ini) {
+        let max = max_ini;
+        let min = min_ini;
+        let result = Array();
+
+        for (let x = 0; x < mat.length; x++) {
+            const row = mat[x];
+            for (let y = 0; y < row.length; y++) {
+                const elem = row[y];
+                if(x % 2 == 0) { // Si la fila es par
+                    if(elem > max) {
+                        max = elem;
+                    }
+                } else { // Si la fila es impar
+                    if(elem < min) {
+                        min = elem;
+                    }
+                }
+            }
+        }
+
+        result.push(max);
+        result.push(min);
+
+        return result;
     }
 })
