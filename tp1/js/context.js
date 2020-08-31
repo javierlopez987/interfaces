@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Creación de lienzo
-    const height = 300;
-    const width = 300;
+    // Seteo del lienzo
+    const HEIGHT = 300;
+    const WIDTH = 300;
     let canvas = document.querySelector("canvas");
-    canvas.height = height;
-    canvas.width = width;
+    canvas.height = HEIGHT;
+    canvas.width = WIDTH;
     
-    // Obtener contexto
-    let ctxCanvas = canvas.getContext("2d");
+    // Obtener contexto del lienzo
+    let ctx = canvas.getContext("2d");
 
-    // Creación de rectangulo
-    ctxCanvas.fillStyle = "#FF0000";
-    ctxCanvas.fillRect(20, 20, 100, 100);
+    // Pinta región rectangular
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(20, 20, 100, 100);
     
+    // Muestra por consola las variables lienzo y contexto
     console.log(canvas);
-    console.log(ctxCanvas);
-
+    console.log(ctx);
 })
