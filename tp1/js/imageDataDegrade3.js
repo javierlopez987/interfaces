@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
     for (x = 0; x < WIDTH; x++) {
         for (y = 0; y < HEIGHT; y++) {
 
+            //inicial rgb (0, 0, 0)
+            //intermedio rgb (255, 255, 0)
+            //final rgb (255, 0, 0)
             let coef = MAX / (WIDTH / 2);
             if(x <= WIDTH / 2) {
                 r = coef * x;
