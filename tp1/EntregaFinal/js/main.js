@@ -27,5 +27,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Dibuja la imagen en pantalla
         ctx.putImageData(imageData, 0, 0);
-    }
+    }   
 })
