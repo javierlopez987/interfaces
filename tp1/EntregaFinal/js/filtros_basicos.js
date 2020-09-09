@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const MAX_BIT = 255;
 
     // Se obtiene el lienzo del DOM
     let canvas = document.querySelector("canvas");
-    
+
     // Se obtiene el contexto del lienzo
     let ctx = canvas.getContext("2d");
 
@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return imageData.data[index + 2];
     }
 
-     // Retorna byte A del pixel de coordenadas (x, y)
-     function getAlpha(imageData, x, y) {
+    // Retorna byte A del pixel de coordenadas (x, y)
+    function getAlpha(imageData, x, y) {
         let index = (x + y * imageData.width) * 4;
         return imageData.data[index + 3];
     }
@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * # SECCION DE FILTROS  
-     * */ 
+     * */
 
     /**
      *  ## FILTRO GRISES
-     * */  
+     * */
 
     // Se agrega un EventListener de click de mouse al boton de filtro de grises
     let btn_grises = document.querySelector(".grises");
@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.putImageData(imageData, 0, 0);
     })
 
-    // Función que aplica filtro de escala de grises
     function filtroGrises(imageData) {
         let r = 0;
         let g = 0;
@@ -65,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let a = 0;
         let gris = 0;
 
-        // Recorre el arreglo de pixeles y setea el color de la imagen
         for (x = 0; x < canvas.width; x++) {
             for (y = 0; y < canvas.height; y++) {
                 r = getRed(imageData, x, y);
@@ -86,16 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      *  ## FILTRO BINARIO
-     * */ 
-    // Se agrega un EventListener de click de mouse al boton de filtro de grises
+     * */
+    // Se agrega un EventListener de click de mouse al boton de filtro de binario
     let btn_binario = document.querySelector(".binario");
-    btn_binario.addEventListener('click', function() {
+    btn_binario.addEventListener('click', function () {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         filtroBinario(imageData);
         ctx.putImageData(imageData, 0, 0);
     })
 
-    // Función que aplica filtro de escala de grises
     function filtroBinario(imageData) {
         let r = 0;
         let g = 0;
@@ -112,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 gris = (r + g + b) / 3;
 
-                if(gris < (MAX_BIT / 2)) {
+                if (gris < (MAX_BIT / 2)) {
                     r = 0;
                     g = 0;
                     b = 0;
@@ -122,7 +119,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     b = MAX_BIT;
                 }
 
-                
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+    }
+
+        /**
+     *  ## FILTRO NEGATIVO
+     * */
+    // Se agrega un EventListener de click de mouse al boton de filtro de negativo
+    let btn_negativo = document.querySelector(".negativo");
+    btn_negativo.addEventListener('click', function () {
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        filtroNegativo(imageData);
+        ctx.putImageData(imageData, 0, 0);
+    })
+
+    function filtroNegativo(imageData) {
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        let a = 0;
+
+        for (x = 0; x < canvas.width; x++) {
+            for (y = 0; y < canvas.height; y++) {
+                r = getRed(imageData, x, y);
+                g = getGreen(imageData, x, y);
+                b = getBlue(imageData, x, y);
+                a = getAlpha(imageData, x, y);
+
+                r = MAX_BIT - r;
+                g = MAX_BIT - g;
+                b = MAX_BIT - b;
+
                 setPixel(imageData, x, y, r, g, b, a);
             }
         }
