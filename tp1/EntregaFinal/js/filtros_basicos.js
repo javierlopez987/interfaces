@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-        /**
+    /**
      *  ## FILTRO NEGATIVO
      * */
     // Se agrega un EventListener de click de mouse al boton de filtro de negativo
@@ -151,6 +151,54 @@ document.addEventListener('DOMContentLoaded', function () {
                 r = MAX_BIT - r;
                 g = MAX_BIT - g;
                 b = MAX_BIT - b;
+
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+    }
+
+    /**
+     *  ## FILTRO SEPIA
+     * */
+    // Se agrega un EventListener de click de mouse al boton de filtro de sepia
+    let btn_sepia = document.querySelector(".sepia");
+    btn_sepia.addEventListener('click', function () {
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        filtroSepia(imageData);
+        ctx.putImageData(imageData, 0, 0);
+    })
+
+    function filtroSepia(imageData) {
+        const R = 82;
+        const G = 75;
+        const B = 59;
+
+        const HSV = Conversor.rgbToHsv(R, G, B);
+
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        let a = 0;
+        let obj_hsv = null;
+        let obj_rgb = null;
+
+        for (x = 0; x < canvas.width; x++) {
+            for (y = 0; y < canvas.height; y++) {
+
+                r = getRed(imageData, x, y);
+                g = getGreen(imageData, x, y);
+                b = getBlue(imageData, x, y);
+                a = getAlpha(imageData, x, y);
+
+                obj_hsv = Conversor.rgbToHsv(r, g, b);
+                obj_hsv.h = HSV.h;
+                obj_hsv.s = HSV.s;
+
+                obj_rgb = Conversor.hsvToRgb(obj_hsv.h, obj_hsv.s, obj_hsv.v);
+
+                r = obj_rgb.r;
+                g = obj_rgb.g;
+                b = obj_rgb.b;
 
                 setPixel(imageData, x, y, r, g, b, a);
             }
