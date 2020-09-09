@@ -10,16 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Obtener contexto del lienzo
     let ctx = canvas.getContext("2d");
 
-    // Creo imagen sobre lienzo con ImageData
-    let imageData = ctx.createImageData(WIDTH, HEIGHT);
+    builtImage();
+    let btn_pizarra = document.querySelector(".pizarra");
+    btn_pizarra.addEventListener("click", builtImage);
 
-    // Crea un objeto Image (Elemento HTML)
-    let imagen = new Image();
-    imagen.src = "img/marco_pizarra.png";
-    imagen.addEventListener('load', function() {
-        ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-    })
-
-    // Dibuja la imagen en pantalla
-    ctx.putImageData(imageData, 0, 0);
+    function builtImage() {
+        // Creo imagen sobre lienzo con ImageData
+        let imageData = ctx.createImageData(WIDTH, HEIGHT);
+    
+        // Crea un objeto Image (Elemento HTML)
+        let imagen = new Image();
+        imagen.src = "img/marco_pizarra.png";
+        imagen.addEventListener('load', function() {
+            ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+        })
+    
+        // Dibuja la imagen en pantalla
+        ctx.putImageData(imageData, 0, 0);
+    }
 })
