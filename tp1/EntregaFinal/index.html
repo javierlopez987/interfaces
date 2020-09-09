@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Inicio Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <!-- Fin Bootstrap -->
+    <script src="js/main.js"></script>
+    <title>Interfaces TP1 Integrador</title>
+</head>
+
+<body>
+    <main class="grid-container">
+        <header class="comp1">
+            <h1>Tu Pizarra</h1>
+        </header>
+        <aside class="comp2">
+            <!-- Default dropright button -->
+            <nav class="btn-group dropright">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Lienzo
+                </button>
+                <div class="dropdown-menu">
+                    <button>Pizarra</button>
+                    <button>En blanco</button>
+                    <button>Cargar Imagen</button>
+                </div>
+            </nav>
+            <nav class="btn-group dropright">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Herramientas
+                </button>
+                <div class="dropdown-menu">
+                    <button>Lapiz</button>
+                    <button>Goma</button>
+                </div>
+            </nav>
+        </aside>
+        <section class="comp3">
+            <canvas>
+            </canvas>
+        </section>
+        <footer class="comp4">
+            <h1>Autor: Javier López Ferreira</h1>
+        </footer>
+    </main>
+</body>
+
+</html>
