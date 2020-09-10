@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', function() {
     let ctx = canvas.getContext("2d");
 
     builtImage();
+
+    /**
+     * OPCIONES DE MENU
+     */
+    /**
+     *  ## OPCION PIZARRA PREDETERMINADA
+     * */
     let btn_pizarra = document.querySelector(".pizarra");
     btn_pizarra.addEventListener("click", builtImage);
 
@@ -28,4 +35,44 @@ document.addEventListener('DOMContentLoaded', function() {
         // Dibuja la imagen en pantalla
         ctx.putImageData(imageData, 0, 0);
     }   
+
+
+    /**
+     *  ## OPCION DIBUJAR
+     * */
+    let btn_lapiz = document.querySelector(".lapiz");
+    btn_lapiz.addEventListener('click', dibujar);
+    
+    function dibujar() {
+        let x = 0;
+        let y = 0;
+        let punto_inicio = null;
+    
+        canvas.addEventListener('mousedown', function(e) {
+            console.log(e);
+            punto_inicio = new Punto(this, e.offsetX, e.offsetY);
+            x = e.offsetX;
+            y = e.offsetY;
+        })
+    
+        canvas.addEventListener('mousemove', function(e) {
+            if(punto_inicio != null) {
+                let origen = punto_inicio;
+                let destino = new Punto(this, e.offsetX, e.offsetY);
+                if(origen.dibujarLinea(destino)) {
+                    punto_inicio = destino;
+                }
+            }
+        })
+    
+        canvas.addEventListener('mouseup', function(e) {
+            if (punto_inicio != null) {
+                let origen = punto_inicio;
+                let destino = new Punto(this, e.offsetX, e.offsetY);
+                if(origen.dibujarLinea(destino)) {
+                    punto_inicio = null;
+                }
+            }
+        });
+    }
 })
