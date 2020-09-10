@@ -204,4 +204,54 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     }
+
+    /**
+     *  ## FILTRO BRILLO
+     * */
+    // Se agrega un EventListener de click de mouse al boton de filtro de brillo
+    let btn_brillo = document.querySelector(".brillo");
+    btn_brillo.addEventListener('change', function (e) {
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        console.log(e);
+        console.log(e.target.value);
+        let range = e.target.value
+        filtroBrillo(imageData, range);
+        ctx.putImageData(imageData, 0, 0);
+    })
+
+    function filtroBrillo(imageData, rangeValue) {
+        const MAX_RANGE = 100;
+        let r = 0;
+        let g = 0;
+        let b = 0;
+        let a = 0;
+        let obj_hsl = null;
+        let obj_rgb = null;
+
+        for (x = 0; x < canvas.width; x++) {
+            for (y = 0; y < canvas.height; y++) {
+
+                r = getRed(imageData, x, y);
+                g = getGreen(imageData, x, y);
+                b = getBlue(imageData, x, y);
+                a = getAlpha(imageData, x, y);
+                
+                obj_hsl = Conversor.rgbToHsl(r, g, b);
+
+                if(rangeValue < MAX_RANGE / 2) {
+                    obj_hsl.l /= (1 + (MAX_RANGE - rangeValue) / MAX_RANGE);
+                } else {
+                    obj_hsl.l *= (1 + rangeValue / MAX_RANGE);
+                }
+
+                obj_rgb = Conversor.hslToRgb(obj_hsl.h, obj_hsl.s, obj_hsl.l);
+
+                r = obj_rgb.r;
+                g = obj_rgb.g;
+                b = obj_rgb.b;
+
+                setPixel(imageData, x, y, r, g, b, a);
+            }
+        }
+    }
 })
