@@ -71,9 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
      *  ## HERRAMIENTA GOMA
      * */
     let isSetGoma = false;
+    let gomaSize = 20;
     
     let btn_goma = document.querySelector(".goma");
     btn_goma.addEventListener('click', setGoma);
+
+    let range_goma = document.querySelector(".gomaRange");
+    range_goma.addEventListener('change', function (e) {
+        gomaSize = e.target.value;
+    })
     
     function setGoma() {
         if(isSetLapiz) {
@@ -115,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if(punto_inicio != null) {
             let origen = punto_inicio;
             let destino = new Punto(this, e.layerX, e.layerY);
-            origen.borrar();
+            origen.borrar(gomaSize, gomaSize);
             if(e.type == 'mouseup') {
                 punto_inicio = null;
             } else {

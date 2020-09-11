@@ -22,10 +22,10 @@ class Punto {
         return dibujado;
     }
 
-    borrar() {
+    borrar(w, h) {
         this.contexto.beginPath();
         this.contexto.fillStyle = 'white';
-        this.contexto.fillRect(this.x, this.y, 20, 20);
+        this.contexto.fillRect(this.x, this.y, w, h);
         this.contexto.closePath();
     }
 }
