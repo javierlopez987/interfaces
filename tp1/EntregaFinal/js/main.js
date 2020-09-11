@@ -36,72 +36,93 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.putImageData(imageData, 0, 0);
     }   
 
-
+    
     /**
-     *  ## OPCION DIBUJAR
+     *  # HERRAMIENTAS
      * */
+    
+    /**
+     *  ## HERRAMIENTA LAPIZ
+     * */
+    let isSetLapiz = false;
+    let punto_inicio = null;
+    
     let btn_lapiz = document.querySelector(".lapiz");
     btn_lapiz.addEventListener('click', setLapiz);
-
+    
     function setLapiz() {
-        let punto_inicio = null;
+        if(isSetGoma) {
+            unsetGoma();
+        }
+        canvas.addEventListener('mousedown', trazarLinea);
+        canvas.addEventListener('mousemove', trazarLinea);
+        canvas.addEventListener('mouseup', trazarLinea);
+        isSetLapiz = true;
+    }
     
-        canvas.addEventListener('mousedown', function(e) {
-            punto_inicio = new Punto(this, e.offsetX, e.offsetY);
-        })
+    function unsetLapiz() {
+        canvas.removeEventListener('mousedown', trazarLinea);
+        canvas.removeEventListener('mousemove', trazarLinea);
+        canvas.removeEventListener('mouseup', trazarLinea);
+        isSetLapiz = false;
+    }
     
-        canvas.addEventListener('mousemove', function(e) {
-            if(punto_inicio != null) {
-                let origen = punto_inicio;
-                let destino = new Punto(this, e.offsetX, e.offsetY);
-                if(origen.dibujarLinea(destino)) {
-                    punto_inicio = destino;
-                }
-            }
-        })
-        
-        canvas.addEventListener('mouseup', function(e) {
-            if (punto_inicio != null) {
-                let origen = punto_inicio;
-                let destino = new Punto(this, e.offsetX, e.offsetY);
-                if(origen.dibujarLinea(destino)) {
-                    punto_inicio = null;
-                }
-            }
-        })
+    /**
+     *  ## HERRAMIENTA GOMA
+     * */
+    let isSetGoma = false;
+    
+    let btn_goma = document.querySelector(".goma");
+    btn_goma.addEventListener('click', setGoma);
+    
+    function setGoma() {
+        if(isSetLapiz) {
+            unsetLapiz();
+        }
+        canvas.addEventListener('mousedown', borrarLinea);
+        canvas.addEventListener('mousemove', borrarLinea);
+        canvas.addEventListener('mouseup', borrarLinea);
+        isSetGoma = true;
+    }
+    
+    function unsetGoma() {
+        canvas.removeEventListener('mousedown', borrarLinea);
+        canvas.removeEventListener('mousemove', borrarLinea);
+        canvas.removeEventListener('mouseup', borrarLinea);
+        isSetGoma = false;
     }
 
     /**
-     *  ## OPCION BORRAR
-     * */
-    let btn_goma = document.querySelector(".goma");
-    btn_goma.addEventListener('click', setGoma);
-
-    function setGoma() {
-        let punto_inicio = null;
-    
-        canvas.addEventListener('mousedown', function(e) {
-            punto_inicio = new Punto(this, e.offsetX, e.offsetY);
-        })
-    
-        canvas.addEventListener('mousemove', function(e) {
-            if(punto_inicio != null) {
-                let origen = punto_inicio;
-                let destino = new Punto(this, e.offsetX, e.offsetY);
-                if(origen.borrarLinea(destino)) {
+     *  ## FUNCIONES DE DIBUJO
+     */  
+    function trazarLinea(e) {
+        if(punto_inicio != null) {
+            let origen = punto_inicio;
+            let destino = new Punto(this, e.layerX, e.layerY);
+            if(origen.dibujar(destino)) {
+                if(e.type == 'mouseup') {
+                    punto_inicio = null;
+                } else {
                     punto_inicio = destino;
                 }
             }
-        })
-        
-        canvas.addEventListener('mouseup', function(e) {
-            if (punto_inicio != null) {
-                let origen = punto_inicio;
-                let destino = new Punto(this, e.offsetX, e.offsetY);
-                if(origen.borrarLinea(destino)) {
-                    punto_inicio = null;
-                }
+        } else if (e.type == 'mousedown'){
+            punto_inicio = new Punto(canvas, e.layerX, e.layerY);
+        }
+    }
+
+    function borrarLinea(e) {
+        if(punto_inicio != null) {
+            let origen = punto_inicio;
+            let destino = new Punto(this, e.layerX, e.layerY);
+            origen.borrar();
+            if(e.type == 'mouseup') {
+                punto_inicio = null;
+            } else {
+                punto_inicio = destino;
             }
-        })
+        } else if (e.type == 'mousedown'){
+            punto_inicio = new Punto(canvas, e.layerX, e.layerY);
+        }
     }
 })
