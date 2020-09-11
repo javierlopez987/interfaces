@@ -41,18 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
      *  ## OPCION DIBUJAR
      * */
     let btn_lapiz = document.querySelector(".lapiz");
-    btn_lapiz.addEventListener('click', dibujar);
-    
-    function dibujar() {
-        let x = 0;
-        let y = 0;
+    btn_lapiz.addEventListener('click', setLapiz);
+
+    function setLapiz() {
         let punto_inicio = null;
     
         canvas.addEventListener('mousedown', function(e) {
-            console.log(e);
             punto_inicio = new Punto(this, e.offsetX, e.offsetY);
-            x = e.offsetX;
-            y = e.offsetY;
         })
     
         canvas.addEventListener('mousemove', function(e) {
@@ -64,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         })
-    
+        
         canvas.addEventListener('mouseup', function(e) {
             if (punto_inicio != null) {
                 let origen = punto_inicio;
@@ -73,6 +68,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     punto_inicio = null;
                 }
             }
-        });
+        })
+    }
+
+    /**
+     *  ## OPCION BORRAR
+     * */
+    let btn_goma = document.querySelector(".goma");
+    btn_goma.addEventListener('click', setGoma);
+
+    function setGoma() {
+        let punto_inicio = null;
+    
+        canvas.addEventListener('mousedown', function(e) {
+            punto_inicio = new Punto(this, e.offsetX, e.offsetY);
+        })
+    
+        canvas.addEventListener('mousemove', function(e) {
+            if(punto_inicio != null) {
+                let origen = punto_inicio;
+                let destino = new Punto(this, e.offsetX, e.offsetY);
+                if(origen.borrarLinea(destino)) {
+                    punto_inicio = destino;
+                }
+            }
+        })
+        
+        canvas.addEventListener('mouseup', function(e) {
+            if (punto_inicio != null) {
+                let origen = punto_inicio;
+                let destino = new Punto(this, e.offsetX, e.offsetY);
+                if(origen.borrarLinea(destino)) {
+                    punto_inicio = null;
+                }
+            }
+        })
     }
 })

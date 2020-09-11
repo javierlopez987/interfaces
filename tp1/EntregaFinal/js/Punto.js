@@ -21,4 +21,18 @@ class Punto {
 
         return dibujado;
     }
+
+    borrarLinea(otroPunto) {
+        let borrado = false;
+
+        if(otroPunto != null) {
+            this.contexto.beginPath();
+            this.contexto.fillStyle = 'white';
+            this.contexto.fillRect(this.x, this.y, 20, 20);
+            this.contexto.closePath();
+            borrado = true;
+        }
+
+        return borrado;
+    }
 }
