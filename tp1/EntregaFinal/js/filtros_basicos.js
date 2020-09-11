@@ -212,8 +212,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let btn_brillo = document.querySelector(".brillo");
     btn_brillo.addEventListener('change', function (e) {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        console.log(e);
-        console.log(e.target.value);
         let range = e.target.value
         filtroBrillo(imageData, range);
         ctx.putImageData(imageData, 0, 0);
