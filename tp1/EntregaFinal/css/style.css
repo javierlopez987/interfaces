@@ -2,7 +2,7 @@
   display: grid;
   grid-template-areas:
     'header header header header header header'
-    'menu menu main main main right'
+    'menu menu main main main main'
     'menu menu footer footer footer footer';
   grid-gap: 10px;
   padding: 10px;
@@ -11,5 +11,4 @@
 .comp1 { grid-area: header; }
 .comp2 { grid-area: menu; }
 .comp3 { grid-area: main; }
-.comp4 { grid-area: right; }
-.comp5 { grid-area: footer; }
+.comp4 { grid-area: footer; }
