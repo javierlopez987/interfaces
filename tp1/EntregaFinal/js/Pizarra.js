@@ -1,8 +1,6 @@
-class Pizarra {
+class Pizarra extends Lienzo{
     constructor(canvas, width, height) {
-        this.width = width;
-        this.height = height;
-        this.canvas = canvas;
+        super(canvas, width, height);
         this.ctx = this.canvas.getContext("2d");
     }
 
