@@ -5,7 +5,6 @@ const WIDTH = 800;
 const HEIGHT = 600;
 let canvas;
 let lienzo;
-let filtro;
 
 
 function cargarCanvas() {
@@ -31,6 +30,11 @@ function builtEnBlanco() {
     lienzo.builtImagePredet();
 }
 
+function builtVacio() {
+    lienzo = new Vacio(canvas);
+    lienzo.builtImagePredet();
+}
+
 function cargarMenu() {
     /**
      * OPCIONES DE MENU
@@ -51,22 +55,11 @@ function cargarMenu() {
      * */
     let btn_en_blanco = document.querySelector(".en_blanco");
     btn_en_blanco.addEventListener("click", builtEnBlanco);
-    
     /**
-     *  # FILTROS
-     */
-
-        /**
-     *  ## FILTRO GRISES
+     *  ## BOTON DESCARTAR
      * */
-
-    let btn_grises = document.querySelector(".grises");
-    btn_grises.addEventListener('click', filtrarGris);
-    
-    function filtrarGris() {
-        filtro = new FiltroGris(lienzo);
-        filtro.filtrar();
-    }
+    let btn_descartar = document.querySelector(".descartar");
+    btn_descartar.addEventListener("click", builtVacio);
 
     /**
      *  # HERRAMIENTAS
