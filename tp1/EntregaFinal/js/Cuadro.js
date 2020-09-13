@@ -1,12 +1,12 @@
-class Pizarra extends Lienzo{
+class Cuadro extends Lienzo{
     constructor(canvas) {
         super(canvas);
         this.imagen = new Image();
     }
 
     builtImagePredet() {
-        this.imagen.src = "img/marco_pizarra.png";
-        
+        this.imagen.src = "img/montanha.jpg";
+
         let width = this.width;
         let height = this.height;
         let ctx = this.ctx;
@@ -16,5 +16,4 @@ class Pizarra extends Lienzo{
         
         this.dibujarEnPantalla();
     } 
-
 }

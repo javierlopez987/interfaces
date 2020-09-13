@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', cargarMenu);
 const WIDTH = 800;
 const HEIGHT = 600;
 let canvas;
-let pizarra;
+let lienzo;
+let filtro;
 
 
 function cargarCanvas() {
@@ -12,23 +13,60 @@ function cargarCanvas() {
     canvas = document.querySelector("canvas");
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
-    pizarra = new Pizarra(canvas, WIDTH, HEIGHT);
     builtPizarra();
 }
 
 function builtPizarra() {
-    pizarra.builtImagePredet();
+    lienzo = new Pizarra(canvas);
+    lienzo.builtImagePredet();
+}
+
+function builtCuadro() {
+    lienzo = new Cuadro(canvas);
+    lienzo.builtImagePredet();
+}
+
+function builtEnBlanco() {
+    lienzo = new EnBlanco(canvas);
+    lienzo.builtImagePredet();
 }
 
 function cargarMenu() {
     /**
      * OPCIONES DE MENU
      */
+
     /**
      *  ## BOTON PIZARRA PREDETERMINADA
      * */
     let btn_pizarra = document.querySelector(".pizarra");
     btn_pizarra.addEventListener("click", builtPizarra);
+    /**
+     *  ## BOTON CUADRO PREDETERMINADA
+     * */
+    let btn_cuadro = document.querySelector(".cuadro");
+    btn_cuadro.addEventListener("click", builtCuadro);
+    /**
+     *  ## BOTON EN BLANCO
+     * */
+    let btn_en_blanco = document.querySelector(".en_blanco");
+    btn_en_blanco.addEventListener("click", builtEnBlanco);
+    
+    /**
+     *  # FILTROS
+     */
+
+        /**
+     *  ## FILTRO GRISES
+     * */
+
+    let btn_grises = document.querySelector(".grises");
+    btn_grises.addEventListener('click', filtrarGris);
+    
+    function filtrarGris() {
+        filtro = new FiltroGris(lienzo);
+        filtro.filtrar();
+    }
 
     /**
      *  # HERRAMIENTAS
