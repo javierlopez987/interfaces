@@ -12,3 +12,7 @@
 .comp2 { grid-area: menu; }
 .comp3 { grid-area: main; }
 .comp4 { grid-area: footer; }
+
+.input_imagen {
+  display: none;
+}

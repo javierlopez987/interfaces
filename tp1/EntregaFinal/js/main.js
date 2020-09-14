@@ -35,6 +35,25 @@ function builtVacio() {
     lienzo.builtImagePredet();
 }
 
+function inputListener() {
+    document.querySelector(".input_imagen").click();
+    document.querySelector(".input_imagen").addEventListener("change", cargarImagen);
+}
+
+function cargarImagen(e) {
+    let file = e.target.files.item(0);
+
+    let reader = new FileReader();
+    reader.addEventListener('load', mostrarImagen)
+    reader.readAsDataURL(file);
+}
+
+function mostrarImagen(e) {
+    let path = e.target.result;
+    lienzo = new Imagen(canvas);
+    lienzo.builtImagePredet(path);
+}
+
 function cargarMenu() {
     /**
      * OPCIONES DE MENU
@@ -55,6 +74,12 @@ function cargarMenu() {
      * */
     let btn_en_blanco = document.querySelector(".en_blanco");
     btn_en_blanco.addEventListener("click", builtEnBlanco);
+    /**
+     *  ## BOTON CARGAR IMAGEN
+     * */
+    let btn_cargar_imagen = document.querySelector(".cargar_imagen");
+    btn_cargar_imagen.addEventListener("click", inputListener);
+    
     /**
      *  ## BOTON DESCARTAR
      * */
