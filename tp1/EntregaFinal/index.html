@@ -20,6 +20,7 @@
     <!-- Fin Bootstrap -->
     <script src="js/main.js"></script>
     <script src="js/filtros_basicos.js"></script>
+    <script src="js/filtros_avanzados.js"></script>
     <script src="js/Conversor.js"></script>
     <script src="js/Punto.js"></script>
     <script src="js/Lienzo.js"></script>
@@ -83,7 +84,8 @@
                         Filtros avanzados
                     </button>
                     <div class="dropdown-menu">
-                        <button class="btn btn-light btn-block saturado">Saturado</button>
+                        <label for="saturacionRange">Saturación</label>
+                        <input type="range" class="custom-range saturado" id="saturacionRange"></input>
                         <button class="btn btn-light btn-block suavizado">Suavizado</button>
                         <button class="btn btn-light btn-block bordes">Bordes</button>
                         <button class="btn btn-light btn-block blur">Blur</button>

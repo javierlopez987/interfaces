@@ -120,6 +120,7 @@ function cargarMenu() {
         canvas.addEventListener('mousedown', trazarLinea);
         canvas.addEventListener('mousemove', trazarLinea);
         canvas.addEventListener('mouseup', trazarLinea);
+        canvas.addEventListener('mouseout', trazarLinea);
         isSetLapiz = true;
     }
     
@@ -127,6 +128,7 @@ function cargarMenu() {
         canvas.removeEventListener('mousedown', trazarLinea);
         canvas.removeEventListener('mousemove', trazarLinea);
         canvas.removeEventListener('mouseup', trazarLinea);
+        canvas.removeEventListener('mouseout', trazarLinea);
         isSetLapiz = false;
     }
     

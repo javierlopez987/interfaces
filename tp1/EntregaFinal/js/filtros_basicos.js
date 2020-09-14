@@ -208,11 +208,10 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      *  ## FILTRO BRILLO
      * */
-    // Se agrega un EventListener de click de mouse al boton de filtro de brillo
     let btn_brillo = document.querySelector(".brillo");
     btn_brillo.addEventListener('change', function (e) {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        let range = e.target.value
+        let range = e.target.value;
         filtroBrillo(imageData, range);
         ctx.putImageData(imageData, 0, 0);
     })
