@@ -37,7 +37,6 @@ function builtVacio() {
 
 function inputListener() {
     document.querySelector(".input_imagen").click();
-    document.querySelector(".input_imagen").addEventListener("change", cargarImagen);
 }
 
 function cargarImagen(e) {
@@ -79,6 +78,8 @@ function cargarMenu() {
      * */
     let btn_cargar_imagen = document.querySelector(".cargar_imagen");
     btn_cargar_imagen.addEventListener("click", inputListener);
+    let input_imagen = document.querySelector(".input_imagen");
+    input_imagen.addEventListener("change", cargarImagen);
     
     /**
      *  ## BOTON DESCARTAR
