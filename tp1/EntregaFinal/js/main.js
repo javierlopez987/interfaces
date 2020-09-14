@@ -85,7 +85,20 @@ function cargarMenu() {
      *  ## BOTON DESCARTAR
      * */
     let btn_descartar = document.querySelector(".descartar");
-    btn_descartar.addEventListener("click", builtVacio);
+    btn_descartar.addEventListener("click", builtVacio);   
+    /**
+     *  ## BOTON GUARDAR
+     * */
+    let btn_guardar = document.querySelector(".guardar");
+    btn_guardar.addEventListener("click", guardar);
+
+    function guardar() {
+        let path = canvas.toDataURL();
+        let link = document.createElement("a");
+        link.href = path;
+        link.setAttribute("download", "Imagen");
+        link.click();
+    }
 
     /**
      *  # HERRAMIENTAS
