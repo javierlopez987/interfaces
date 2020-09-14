@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const MAX_BIT = 255;
-
     // Se obtiene el lienzo del DOM
     let canvas = document.querySelector("canvas");
 
@@ -42,12 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /**
-     * # SECCION DE FILTROS  
+     * # SECCION DE FILTROS AVANZADOS
      * */
 
     /**
      *  ## FILTRO SATURACION
      * */
+    const ANCHO_KERNEL = 3;
+    const ALTO_KERNEL = 3;
     let btn_saturacion = document.querySelector(".saturado");
     btn_saturacion.addEventListener('change', function (e) {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -98,51 +98,80 @@ document.addEventListener('DOMContentLoaded', function () {
     let btn_blur = document.querySelector(".blur");
     btn_blur.addEventListener('click', function () {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        filtroBlur(imageData);
+        let kernel = getKernelBlur();
+        filtroBlur(imageData, kernel);
         ctx.putImageData(imageData, 0, 0);
     })
 
-    function filtroBlur() {
-        let kernel = getKernelBlur();
+    function filtroBlur(imageData, kernel) {
+        let a;
+        let pixel;
+        
+        for (let y = 0; y < imageData.height; y++) {
+            for (let x = 0; x < imageData.width; x++) {
+                pixel = getPixelBlur(imageData, x, y, kernel);
+                a = getAlpha(imageData, x, y);
+                setPixel(imageData, x, y, pixel.r, pixel.g, pixel.b, a);
+            }
+        }
     }
 
     /**
      * Función de creación de kernel blur
      */
     function getKernelBlur() {
-        const ANCHO = 3;
-        const ALTO = 3;
         let kernel = [];
         
-        for (let x = 0; x < ANCHO; x++) {
+        for (let x = 0; x < ANCHO_KERNEL; x++) {
             kernel[x] = [];
-            for (let y = 0; y < ALTO; y++) {
+            for (let y = 0; y < ALTO_KERNEL; y++) {
                 kernel[x][y] = 1;
             }
         }
         return kernel;
     }
 
-    function aplicarBlur(imageData) {
-        let pixel;
-        let r = 0;
-        let g = 0;
-        let b = 0;
-        let a = 0;
+    function getPixelBlur(imageData, x, y, kernel) {
+        let ctrl_x = x - 1;
+        let ctrl_y = y - 1;
+        let ctrl_max_x = ANCHO_KERNEL;
+        let ctrl_max_y = ALTO_KERNEL;
+        let sum_r = 0;
+        let sum_g = 0;
+        let sum_b = 0;
+        let kernel_value;
 
-        for (let y = 0; y < imageData.height; y++) {
-            for (let x = 0; x < imageData.width; x++) {
-                pixel = imageData[x][y];
+        if(ctrl_x >= 0) {
+            x = ctrl_x;
+        }
+        if(ctrl_y >= 0) {
+            y = ctrl_y;
+        }
+        if((x + ANCHO_KERNEL) > imageData.width) {
+            ctrl_max_x = imageData.width - x;
+        }
+        if((y + ALTO_KERNEL) > imageData.height) {
+            ctrl_max_y = imageData.height - y;
+        }
+        
+        for(let i = 0; i < ctrl_max_y; i++) {
+            for(let j = 0; j < ctrl_max_x; j++) {
+                let imageDataCopy = imageData;
+                r = getRed(imageDataCopy, (x + i), (y + j));
+                g = getGreen(imageDataCopy, (x + i), (y + j));
+                b = getBlue(imageDataCopy, (x + i), (y + j));
 
-                r = getRed(imageData, x, y);
-                g = getGreen(imageData, x, y);
-                b = getBlue(imageData, x, y);
-                a = getAlpha(imageData, x, y);
+                kernel_value = kernel[i][j];
+
+                sum_r += r * kernel_value;
+                sum_g += g * kernel_value;
+                sum_b += b * kernel_value;
             }
         }
-    }
 
-    function getMatrizPixel(imageData, pixel) {
-        let x = pixel - 16;
+        return {
+            r: sum_r / (ANCHO_KERNEL * ALTO_KERNEL),
+            g: sum_g / (ANCHO_KERNEL * ALTO_KERNEL),
+            b: sum_b / (ANCHO_KERNEL * ALTO_KERNEL)};
     }
 })
