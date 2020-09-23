@@ -4,4 +4,9 @@ class Rectangle extends Figure {
         this.width = width;
         this.height = height;
     }
+
+    draw() {
+        super.draw();
+        this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+    }
 }
