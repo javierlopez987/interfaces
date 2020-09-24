@@ -10,20 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
     let ctx = canvas.getContext("2d");
-    let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'black', ctx);
+    let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'white', ctx);
 
-    let pathImages = [
-        "img/powder.jpg",
-        "img/alejandro_lerner.jpg",
-        "img/shakira.jpg",
-        "img/van-gogh-christies.jpg",
-        "img/landscape.jpg",
-        "img/juan_luis_guerra.jpg",
-        "img/ricky_martin.jpg"
-    ]
     let figureFactory;
 
-  /*   figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
+ /*    figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM);
 
     figureFactory = new SolidRectangleFactory(FIGURE_SIZE, ctx, tablero);
@@ -33,28 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     createFigures(figureFactory, FIGURE_NUM);
 
     figureFactory = new GradientRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
-    createFigures(figureFactory, FIGURE_NUM); */
-
-    //createImagesRectangles();
-    createImagesCircles();
-
-    function createImagesRectangles() {
-        let figure;
-        for (let index = 0; index < pathImages.length; index++) {
-            figureFactory = new ImageRectangleFactory(pathImages[index], FIGURE_SIZE * 2, ctx, tablero);
-            figure = figureFactory.createFigure();
-            tablero.addFigure(figure);
-        }
-    }
-
-    function createImagesCircles() {
-        let figure;
-        for (let index = 0; index < pathImages.length; index++) {
-            figureFactory = new ImageCircleFactory(pathImages[index], FIGURE_SIZE * 2, ctx, tablero);
-            figure = figureFactory.createFigure();
-            tablero.addFigure(figure);
-        }
-    }
+    createFigures(figureFactory, FIGURE_NUM);
 
     function createFigures(figureFactory, figureNum) {
         let figure;
@@ -62,7 +32,37 @@ document.addEventListener("DOMContentLoaded", function() {
             figure = figureFactory.createFigure();
             tablero.addFigure(figure);
         }
-    }
+    } */
     
-    tablero.drawFigures();
+    let pathImages = [
+        "img/powder.jpg",
+        "img/alejandro_lerner.jpg",
+        "img/shakira.jpg",
+        "img/van-gogh-christies.jpg",
+        "img/landscape.jpg",
+        "img/juan_luis_guerra.jpg",
+        "img/ricky_martin.jpg"
+    ]
+
+ /*    for (let index = 0; index < FIGURE_NUM; index++) {
+        let img = new Image();
+        img.src = pathImages[Util.getIntRdm(pathImages.length)];
+        img.addEventListener('load', function() {
+            let pos = Util.getPositionRdm(WIDTH, HEIGHT);
+            let imageRectangle = new ImageRectangle(pos.x, pos.y, FIGURE_SIZE, FIGURE_SIZE, this, ctx);
+            tablero.addFigure(imageRectangle);
+            tablero.drawFigures();
+        })
+    } */
+
+    let img = new Image();
+    img.src = pathImages[0];
+    img.addEventListener('load', function() {
+        let pos = Util.getPositionRdm(WIDTH, HEIGHT);
+        let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
+        tablero.addFigure(circle);
+        tablero.drawFigures();
+    })
+    
+    //tablero.drawFigures();
 })
