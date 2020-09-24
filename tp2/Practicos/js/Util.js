@@ -17,4 +17,8 @@ class Util {
         }
         return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`;
     }
+
+    static getIntRdm(max) {
+        return Math.trunc(Math.random() * max);
+    }
 }

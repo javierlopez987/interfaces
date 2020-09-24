@@ -11,22 +11,20 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.height = HEIGHT;
     let ctx = canvas.getContext("2d");
     let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'black', ctx);
-    
-    createFigures(FIGURE_SIZE, FIGURE_NUM);
-    tablero.draw();
-    tablero.drawFigures();
-    
-    function createFigures(size, num) {
-        let pos, figure, color;
-        for (let index = 0; index < num; index++) {
-            pos = Util.getPositionRdm(WIDTH, HEIGHT);
-            color = Util.getRgbaRdm();
-                if(index % 2 == 0) {
-                    figure = new Circle(pos.x, pos.y, size/2, color, ctx);
-                } else {
-                    figure = new Rectangle(pos.x, pos.y, size, size, color, ctx);
-                }
+
+    let figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
+    createFigures(figureFactory, FIGURE_NUM);
+
+    figureFactory = new SolidRectangleFactory(FIGURE_SIZE, ctx, tablero);
+    createFigures(figureFactory, FIGURE_NUM);
+
+    function createFigures(figureFactory, figureNum) {
+        let figure;
+        for (let index = 0; index < figureNum; index++) {
+            figure = figureFactory.createFigure();
             tablero.addFigure(figure);
         }
     }
+    
+    tablero.drawFigures();
 })
