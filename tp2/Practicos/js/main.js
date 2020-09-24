@@ -35,12 +35,22 @@ document.addEventListener("DOMContentLoaded", function() {
     figureFactory = new GradientRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM); */
 
-    createImagesFigures();
+    //createImagesRectangles();
+    createImagesCircles();
 
-    function createImagesFigures() {
+    function createImagesRectangles() {
         let figure;
         for (let index = 0; index < pathImages.length; index++) {
             figureFactory = new ImageRectangleFactory(pathImages[index], FIGURE_SIZE * 2, ctx, tablero);
+            figure = figureFactory.createFigure();
+            tablero.addFigure(figure);
+        }
+    }
+
+    function createImagesCircles() {
+        let figure;
+        for (let index = 0; index < pathImages.length; index++) {
+            figureFactory = new ImageCircleFactory(pathImages[index], FIGURE_SIZE * 2, ctx, tablero);
             figure = figureFactory.createFigure();
             tablero.addFigure(figure);
         }
