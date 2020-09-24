@@ -18,6 +18,12 @@ document.addEventListener("DOMContentLoaded", function() {
     figureFactory = new SolidRectangleFactory(FIGURE_SIZE, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM);
 
+    figureFactory = new GradientCircleFactory(FIGURE_SIZE, ctx, tablero);
+    createFigures(figureFactory, FIGURE_NUM);
+
+    figureFactory = new GradientRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
+    createFigures(figureFactory, FIGURE_NUM);
+
     function createFigures(figureFactory, figureNum) {
         let figure;
         for (let index = 0; index < figureNum; index++) {
