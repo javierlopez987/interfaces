@@ -19,12 +19,13 @@ class Tablero {
     }
 
     drawFigures() {
+        this.clear();
         this.figures.forEach(e => {
             e.draw();
         });
     }
 
     clear() {
-        this.ctx
+        this.ctx.clearRect(this.posX, this.posY, this.width, this.height);
     }
 }
