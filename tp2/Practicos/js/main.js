@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let ctx = canvas.getContext("2d");
     let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'black', ctx);
 
-    let figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
+    let figureFactory;
+
+  /*   figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM);
 
     figureFactory = new SolidRectangleFactory(FIGURE_SIZE, ctx, tablero);
@@ -22,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function() {
     createFigures(figureFactory, FIGURE_NUM);
 
     figureFactory = new GradientRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
+    createFigures(figureFactory, FIGURE_NUM); */
+
+    figureFactory = new ImageRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM);
 
     function createFigures(figureFactory, figureNum) {
