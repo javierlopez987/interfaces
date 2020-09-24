@@ -12,6 +12,15 @@ document.addEventListener("DOMContentLoaded", function() {
     let ctx = canvas.getContext("2d");
     let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'black', ctx);
 
+    let pathImages = [
+        "img/powder.jpg",
+        "img/alejandro_lerner.jpg",
+        "img/shakira.jpg",
+        "img/van-gogh-christies.jpg",
+        "img/landscape.jpg",
+        "img/juan_luis_guerra.jpg",
+        "img/ricky_martin.jpg"
+    ]
     let figureFactory;
 
   /*   figureFactory = new SolidCircleFactory(FIGURE_SIZE/2, ctx, tablero);
@@ -26,8 +35,16 @@ document.addEventListener("DOMContentLoaded", function() {
     figureFactory = new GradientRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
     createFigures(figureFactory, FIGURE_NUM); */
 
-    figureFactory = new ImageRectangleFactory(FIGURE_SIZE * 2, ctx, tablero);
-    createFigures(figureFactory, FIGURE_NUM);
+    createImagesFigures();
+
+    function createImagesFigures() {
+        let figure;
+        for (let index = 0; index < pathImages.length; index++) {
+            figureFactory = new ImageRectangleFactory(pathImages[index], FIGURE_SIZE * 2, ctx, tablero);
+            figure = figureFactory.createFigure();
+            tablero.addFigure(figure);
+        }
+    }
 
     function createFigures(figureFactory, figureNum) {
         let figure;
