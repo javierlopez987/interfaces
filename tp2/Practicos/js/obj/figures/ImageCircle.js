@@ -32,4 +32,8 @@ class ImageCircle extends Circle {
         this.ctx.drawImage(this.fill, this.posX - this.radius, this.posY - this.radius, width, height);
         this.ctx.restore();
     }
+
+    isPointed(x, y) {
+        return super.isPointed(x, y);
+    }
 }

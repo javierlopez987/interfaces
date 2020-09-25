@@ -12,4 +12,11 @@ class Circle extends Figure {
         this.ctx.fill();
         this.ctx.closePath();
     }
+
+    isPointed(x, y) {
+        let _x = this.posX - x;
+        let _y = this.posY - y;
+        let hyp = Math.sqrt(Math.pow(_x, 2) + Math.pow(_y, 2));
+        return  hyp < this.radius;
+    }
 }

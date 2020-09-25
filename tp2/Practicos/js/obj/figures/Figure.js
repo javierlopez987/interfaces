@@ -20,4 +20,6 @@ class Figure {
     draw() {
         this.ctx.fillStyle = this.fill;
     }
+
+    isPointed(x, y) {};
 }

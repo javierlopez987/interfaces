@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let ctx = canvas.getContext("2d");
     let tablero = new Tablero(0, 0, WIDTH, HEIGHT, 'white', ctx);
     
+    //#region Demo 2 juego de fichas con avatar
     let pathImages = [
         "img/powder.jpg",
         "img/alejandro_lerner.jpg",
@@ -45,5 +46,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         tablero.drawFigures();
     }
+    //#endregion
     
+    canvas.addEventListener("click", function(e) {
+        let selected = findSelected(e.layerX, e.layerY);
+        if(selected != null) {
+            console.log(selected.fill.src + " has been clicked");
+        } else {
+            console.log("No figure has been cliecked");
+        }
+    })
+
+    function findSelected(x, y) {
+        for (let index = 0; index < tablero.figures.length; index++) {
+            const f = tablero.figures[index];
+            if(f.isPointed(x, y)) {
+                return f;
+            }
+        }
+    }
 })

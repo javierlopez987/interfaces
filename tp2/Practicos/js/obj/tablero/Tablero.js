@@ -28,4 +28,5 @@ class Tablero {
     clear() {
         this.ctx.clearRect(this.posX, this.posY, this.width, this.height);
     }
+
 }

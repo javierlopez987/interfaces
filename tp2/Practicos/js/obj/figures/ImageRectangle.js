@@ -11,4 +11,8 @@ class ImageRectangle extends Figure {
         this.ctx.fillStyle = pat;
         this.ctx.fill();
     }
+
+    isPointed(x, y) {
+        return super.isPointed(x, y);
+    }
 }
