@@ -55,21 +55,22 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     } */
 
+    let indexRdm = Util.getIntRdm(pathImages.length);
+        
     let img = new Image();
-    img.src = pathImages[Util.getIntRdm(pathImages.length)];
-    img.addEventListener('load', function() {
-        for (let index = 0; index < FIGURE_NUM; index++) {
-            let pos = Util.getPositionRdm(WIDTH, HEIGHT);
-            let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
-            tablero.addFigure(circle);
-        }
-        console.log(tablero);
-        tablero.drawFigures();
-    })
+    img.src = pathImages[indexRdm];
+    img.addEventListener('load', createPiece)
+
+    let ctrl = indexRdm;
+    while(indexRdm == ctrl) {
+        indexRdm = Util.getIntRdm(pathImages.length);
+    }
 
     let img2 = new Image();
-    img2.src = pathImages[Util.getIntRdm(pathImages.length)];
-    img2.addEventListener('load', function() {
+    img2.src = pathImages[indexRdm];
+    img2.addEventListener('load', createPiece)
+
+    function createPiece() {
         for (let index = 0; index < FIGURE_NUM; index++) {
             let pos = Util.getPositionRdm(WIDTH, HEIGHT);
             let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         console.log(tablero);
         tablero.drawFigures();
-    })
+    }
     
     //tablero.drawFigures();
 })
