@@ -7,6 +7,7 @@ class Circle extends Figure {
     draw() {
         super.draw();
         this.ctx.beginPath();
+        this.ctx.fillStyle = Util.getRgbaRdm();
         this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
         this.ctx.fill();
         this.ctx.closePath();

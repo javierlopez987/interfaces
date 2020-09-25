@@ -4,6 +4,7 @@ class ImageCircle extends Circle {
     }
 
     draw() {
+        super.draw();
         this.ctx.save();
         let circlePath = new Path2D();
         circlePath.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
