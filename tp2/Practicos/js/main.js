@@ -56,11 +56,26 @@ document.addEventListener("DOMContentLoaded", function() {
     } */
 
     let img = new Image();
-    img.src = pathImages[0];
+    img.src = pathImages[Util.getIntRdm(pathImages.length)];
     img.addEventListener('load', function() {
-        let pos = Util.getPositionRdm(WIDTH, HEIGHT);
-        let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
-        tablero.addFigure(circle);
+        for (let index = 0; index < FIGURE_NUM; index++) {
+            let pos = Util.getPositionRdm(WIDTH, HEIGHT);
+            let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
+            tablero.addFigure(circle);
+        }
+        console.log(tablero);
+        tablero.drawFigures();
+    })
+
+    let img2 = new Image();
+    img2.src = pathImages[Util.getIntRdm(pathImages.length)];
+    img2.addEventListener('load', function() {
+        for (let index = 0; index < FIGURE_NUM; index++) {
+            let pos = Util.getPositionRdm(WIDTH, HEIGHT);
+            let circle = new ImageCircle(pos.x, pos.y, FIGURE_SIZE, this, ctx);
+            tablero.addFigure(circle);
+        }
+        console.log(tablero);
         tablero.drawFigures();
     })
     
