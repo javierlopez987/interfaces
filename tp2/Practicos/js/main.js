@@ -55,22 +55,57 @@ document.addEventListener("DOMContentLoaded", function() {
     tablero.addFigure(circle);
 
     let lastSelectedFigure = null;
+    let isDragging = false;
 
-    canvas.addEventListener("click", function(e) {
+    canvas.addEventListener("mousedown", setDragger);
+    canvas.addEventListener("mouseup", unsetDragger);
+    canvas.addEventListener("mouseout", resetPosition);
+    
+    function setDragger(e) {
+        let selected;
+
         if(lastSelectedFigure != null) {
             lastSelectedFigure.setSpotlighted(false);
             lastSelectedFigure = null;
         }
 
-        let selected = findSelected(e.layerX, e.layerY);
+        selected = findSelected(e.layerX, e.layerY);
+
         if(selected != null) {
+            // Trae la figura selecciona al frente
             tablero.deleteFigure(selected);
             tablero.addFigure(selected);
+            // Permite destacar la figura seleccionada
             selected.setSpotlighted(true);
+            // Variable de control
             lastSelectedFigure = selected;
+            // Agrego Listener específico del dragging
+            canvas.addEventListener("mousemove", startDragging);
         } 
+
         tablero.drawFigures();
-    })
+    }
+
+    function startDragging(e) {
+        isDragging = true;
+        lastSelectedFigure.setPosition(e.layerX, e.layerY);
+        tablero.drawFigures();
+    }
+
+    function unsetDragger() {
+        isDragging = false;
+        // Quito el Listener específico del dragging
+        canvas.removeEventListener("mousemove", startDragging);
+    }
+
+    function resetPosition() {
+        if(isDragging) {
+            unsetDragger();
+        }
+        lastSelectedFigure.resetPosition();
+        tablero.drawFigures();
+    }
+
 
     function findSelected(x, y) {
         for (let index = 0; index < tablero.figures.length; index++) {

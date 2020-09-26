@@ -6,6 +6,8 @@ class Figure {
         this.ctx = ctx;
         this.spotlighted = false;
         this.spotlightedStyle = 'rgba(20, 20, 20, 0.8)';
+        this.initialX = posX;
+        this.initialY = posY;
     }
 
     setFill(fill) {
@@ -19,6 +21,11 @@ class Figure {
         };
     }
 
+    setPosition(x, y) {
+        this.posX = x;
+        this.posY = y;
+    }
+
     draw() {
         this.ctx.fillStyle = this.fill;
     }
@@ -27,5 +34,10 @@ class Figure {
 
     setSpotlighted(value) {
         this.spotlighted = value;
+    }
+
+    resetPosition() {
+        this.posX = this.initialX;
+        this.posY = this.initialY;
     }
 }
