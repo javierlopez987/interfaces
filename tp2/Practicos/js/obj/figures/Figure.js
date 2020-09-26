@@ -40,4 +40,9 @@ class Figure {
         this.posX = this.initialX;
         this.posY = this.initialY;
     }
+
+    setInitialPosition(x, y) {
+        this.initialX = x;
+        this.initialY = y;
+    }
 }

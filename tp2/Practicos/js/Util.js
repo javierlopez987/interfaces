@@ -13,7 +13,7 @@ class Util {
             r: Math.trunc(Math.random() * MAX_RGBA),
             g: Math.trunc(Math.random() * MAX_RGBA),
             b: Math.trunc(Math.random() * MAX_RGBA),
-            a: Math.random() * 5
+            a: Math.random() * 0.3 + 0.2
         }
         return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`;
     }

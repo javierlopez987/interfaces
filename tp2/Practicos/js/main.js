@@ -59,17 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     canvas.addEventListener("mousedown", setDragger);
     canvas.addEventListener("mouseup", unsetDragger);
-    canvas.addEventListener("mouseout", resetPosition);
+    canvas.addEventListener("mouseout", unsetDragger);
     
     function setDragger(e) {
-        let selected;
-
-        if(lastSelectedFigure != null) {
-            lastSelectedFigure.setSpotlighted(false);
-            lastSelectedFigure = null;
-        }
-
-        selected = findSelected(e.layerX, e.layerY);
+        let selected = findSelected(e.layerX, e.layerY);
 
         if(selected != null) {
             // Trae la figura selecciona al frente
@@ -92,20 +85,20 @@ document.addEventListener("DOMContentLoaded", function() {
         tablero.drawFigures();
     }
 
-    function unsetDragger() {
+    function unsetDragger(e) {
         isDragging = false;
         // Quito el Listener específico del dragging
         canvas.removeEventListener("mousemove", startDragging);
-    }
-
-    function resetPosition() {
-        if(isDragging) {
-            unsetDragger();
-        }
-        lastSelectedFigure.resetPosition();
+        unselect();
         tablero.drawFigures();
     }
 
+    function unselect() {
+        if(lastSelectedFigure != null) {
+            lastSelectedFigure.setSpotlighted(false);
+            lastSelectedFigure = null;
+        }
+    }
 
     function findSelected(x, y) {
         for (let index = 0; index < tablero.figures.length; index++) {
