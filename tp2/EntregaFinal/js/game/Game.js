@@ -9,11 +9,23 @@ class Game {
         this.turn;
         this.gameRound;
         this.lastMove;
+        this.ground;
+        this.frontLayerLoaded = false;
+        this.backLayerLoaded = false;
+        this.groundLoaded = false;
     }
 
     start() {
         this.ctx = this.canvas.getContext("2d");
-        this.board = new Board(150, 0, 350, 300, 42, this.ctx);
+
+        let boardWidth = 350;
+        let boardHeight = 300;
+        let boardPositionX = this.canvas.width/2 - boardWidth/2;
+        let boardPositionY = this.canvas.height/2 - boardHeight/2;
+        let amountOfPieces = 42;
+
+        this.board = new Board(boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
+        this.board.create();
         this.player1 = new Player("Player1", null);
         this.player2 = new Player("Player2", null);
         this.pieces = new Array(this.board.size);
@@ -53,11 +65,28 @@ class Game {
 
     setEventListeners() {
         let backLayer = new Image();
-        backLayer.src = "./img/backLayerWood.png";
-        // backLayer.src = "./img/landscape.jpg";
+        backLayer.src = "./img/frontLayerWood.jpg";
         let self = this;
         backLayer.addEventListener('load', function() {
-            self.board.setBackLayer(this);
+            if(self.board.setBackLayer(this)) {
+                self.backLayerLoaded = true;
+                self.draw();
+            };
+        });
+
+        let frontLayer = new Image();
+        frontLayer.src = "./img/floor.png";
+        frontLayer.addEventListener('load', function() {
+            if(self.board.setFrontLayer(this)) {
+                self.frontLayerLoaded = true;
+                self.draw();
+            };
+        });
+
+        this.ground = new Image();
+        this.ground.src = "./img/rockTexture.jpg";
+        this.ground.addEventListener('load', function() {
+            self.groundLoaded = true;
             self.draw();
         });
     }
@@ -68,15 +97,18 @@ class Game {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if(this.board.backLayer != null) {
+
+        if(this.groundLoaded) {
+            this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
+        }
+
+        if(this.backLayerLoaded && this.frontLayerLoaded) {
             if(this.pieces != null) {
-                if(this.board.frontLayer != null) {
-                    this.board.drawBackLayer();
-                    this.pieces.forEach(element => {
-                        element.draw();
-                    });
-                    this.board.drawFrontLayer();
-                }
+                this.board.drawBackLayer();
+                this.pieces.forEach(element => {
+                    element.draw();
+                });
+                this.board.drawFrontLayer();
             }
         }
     }
