@@ -18,6 +18,15 @@ class Tablero {
         this.figures.push(figure);
     }
 
+    deleteFigure(figure) {
+        let deleted, index;
+        if(this.figures.includes(figure)) {
+            index = this.figures.indexOf(figure);
+            deleted = this.figures.splice(index, 1);
+        }
+        return deleted;
+    }
+
     drawFigures() {
         this.draw();
         this.figures.forEach(e => {

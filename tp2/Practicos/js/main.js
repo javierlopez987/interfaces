@@ -48,13 +48,28 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     //#endregion
     
+    let circleFactory = new SolidCircleFactory(FIGURE_SIZE, ctx, tablero);
+    
+    let circle = circleFactory.createFigure();
+
+    tablero.addFigure(circle);
+
+    let lastSelectedFigure = null;
+
     canvas.addEventListener("click", function(e) {
+        if(lastSelectedFigure != null) {
+            lastSelectedFigure.setSpotlighted(false);
+            lastSelectedFigure = null;
+        }
+
         let selected = findSelected(e.layerX, e.layerY);
         if(selected != null) {
-            console.log(selected.fill.src + " has been clicked");
-        } else {
-            console.log("No figure has been cliecked");
-        }
+            tablero.deleteFigure(selected);
+            tablero.addFigure(selected);
+            selected.setSpotlighted(true);
+            lastSelectedFigure = selected;
+        } 
+        tablero.drawFigures();
     })
 
     function findSelected(x, y) {

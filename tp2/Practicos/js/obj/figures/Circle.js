@@ -7,10 +7,22 @@ class Circle extends Figure {
     draw() {
         super.draw();
         this.ctx.beginPath();
-        this.ctx.fillStyle = Util.getRgbaRdm();
+        
         this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+        this.ctx.fillStyle = Util.getRgbaRdm();
         this.ctx.fill();
         this.ctx.closePath();
+
+        if(this.spotlighted === true) {
+            this.ctx.beginPath();
+            this.ctx.arc(this.posX, this.posY, this.radius * 1.1, 0, Math.PI);
+            this.ctx.strokeStyle = this.spotlightedStyle;
+            this.ctx.lineWidth = 5;
+            this.ctx.stroke();
+            this.ctx.closePath();
+        }
+        
+       
     }
 
     isPointed(x, y) {

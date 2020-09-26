@@ -4,6 +4,8 @@ class Figure {
         this.posY = posY;
         this.fill = fill;
         this.ctx = ctx;
+        this.spotlighted = false;
+        this.spotlightedStyle = 'rgba(20, 20, 20, 0.8)';
     }
 
     setFill(fill) {
@@ -22,4 +24,8 @@ class Figure {
     }
 
     isPointed(x, y) {};
+
+    setSpotlighted(value) {
+        this.spotlighted = value;
+    }
 }
