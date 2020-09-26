@@ -17,6 +17,14 @@ class Game {
         this.board = board;
     }
 
+    addPlayer(player) {
+        if(this.player1 == null) {
+            this.player1 = player;
+        } else if (this.player2 == null) {
+            this.player2 = player;
+        }
+    }
+
     setPlayers(player1, player2) {
         this.player1 = player1;
         this.player2 = player2;
