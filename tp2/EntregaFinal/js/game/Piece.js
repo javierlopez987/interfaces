@@ -9,7 +9,7 @@ class Piece {
         this.spotlightedStyle = 'rgba(20, 20, 20, 0.8)';
         this.initialX = posX;
         this.initialY = posY;
-        this.hasAvatar = false
+        this.avatar;
     }
 
     isPointed(x, y) {
@@ -53,7 +53,7 @@ class Piece {
             this.ctx.closePath();
         }
 
-        if(this.hasAvatar === true) {
+        if(this.avatar != null) {
             this.ctx.save();
             let circlePath = new Path2D();
             circlePath.arc(this.posX, this.posY, this.radius * 0.9, 0, 2 * Math.PI);
