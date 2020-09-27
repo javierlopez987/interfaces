@@ -18,28 +18,62 @@ class Game {
     start() {
         this.ctx = this.canvas.getContext("2d");
 
+        //Configuracion y creacion de tablero
         let boardWidth = 350;
         let boardHeight = 300;
         let boardPositionX = this.canvas.width/2 - boardWidth/2;
         let boardPositionY = this.canvas.height/2 - boardHeight/2;
         let amountOfPieces = 42;
-
         this.board = new Board(boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
         this.board.create();
+
+        //Configuracion y creacion de jugadores
         this.player1 = new Player("Player1", null);
         this.player2 = new Player("Player2", null);
+
+        //Configuracion y creacion de piezas
+        let pieceRadius = 20;
+        let pieceSize = 20 * 2;
+        let player1Box = 
+            {
+                leftBorder: pieceRadius,
+                topBorder: pieceRadius,
+                widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
+                heightBox: this.canvas.height - pieceSize
+            };
+        let player2Box = 
+            {
+                leftBorder: this.board.width + (this.canvas.width - this.board.width) / 2 + pieceRadius,
+                topBorder: pieceRadius,
+                widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
+                heightBox: this.canvas.height - pieceSize
+            };
+
         this.pieces = new Array(this.board.size);
         for (let index = 0; index < this.pieces.length; index++) {
             let pos;
             if(index < this.pieces.length/2) {
-                pos = Util.getPositionRdm(20, 20, 110, 260);
+                pos = Util.getPositionRdm(
+                    player1Box.leftBorder, 
+                    player1Box.topBorder, 
+                    player1Box.widthBox, 
+                    player1Box.heightBox);
                 this.pieces[index] = new Piece(pos.x, pos.y, 20, 'rgba(180, 20, 20, 0.95)', this.ctx);
             } else {
-                pos = Util.getPositionRdm(520, 20, 110, 260);
+                pos = Util.getPositionRdm(
+                    player2Box.leftBorder, 
+                    player2Box.topBorder, 
+                    player2Box.widthBox, 
+                    player2Box.heightBox);
                 this.pieces[index] = new Piece(pos.x, pos.y, 20, 'rgba(20, 20, 180, 0.95)', this.ctx);
             }
         }
-        this.setEventListeners();
+
+        //Seteo de EventListeners de renderizado
+        this.setEventListenersRender();
+
+        //Seteo de EventListeners de lógica de juego
+        // this.setEventListenersLogic();
     }
 
     addPlayer(player) {
@@ -63,7 +97,7 @@ class Game {
 
     }
 
-    setEventListeners() {
+    setEventListenersRender() {
         let backLayer = new Image();
         backLayer.src = "./img/frontLayerWood.jpg";
         let self = this;
