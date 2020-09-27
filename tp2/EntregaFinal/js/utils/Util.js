@@ -33,7 +33,6 @@ class Util {
 
                 this.setPixel(imageData, x, y, r, g, b, a);
             }
-            
         }
     }
 
@@ -70,4 +69,75 @@ class Util {
         let index = (x + y * imageData.width) * 4;
         return imageData.data[index + 3];
     }
+
+    //#region Filtro Blur
+    static filtroBlur(imageData, kernel) {
+        let a;
+        let pixel;
+        
+        for (let y = 0; y < imageData.height; y++) {
+            for (let x = 0; x < imageData.width; x++) {
+                pixel = this.getPixelBlur(imageData, x, y, kernel);
+                a = getAlpha(imageData, x, y);
+                this.setPixel(imageData, x, y, pixel.r, pixel.g, pixel.b, a);
+            }
+        }
+    }
+
+    static getKernelBlur() {
+        let kernel = [];
+        
+        for (let x = 0; x < ANCHO_KERNEL; x++) {
+            kernel[x] = [];
+            for (let y = 0; y < ALTO_KERNEL; y++) {
+                kernel[x][y] = 1;
+            }
+        }
+        return kernel;
+    }
+
+    static getPixelBlur(imageData, x, y, kernel) {
+        let ctrl_x = x - 1;
+        let ctrl_y = y - 1;
+        let ctrl_max_x = ANCHO_KERNEL;
+        let ctrl_max_y = ALTO_KERNEL;
+        let sum_r = 0;
+        let sum_g = 0;
+        let sum_b = 0;
+        let kernel_value;
+
+        if(ctrl_x >= 0) {
+            x = ctrl_x;
+        }
+        if(ctrl_y >= 0) {
+            y = ctrl_y;
+        }
+        if((x + ANCHO_KERNEL) > imageData.width) {
+            ctrl_max_x = imageData.width - x;
+        }
+        if((y + ALTO_KERNEL) > imageData.height) {
+            ctrl_max_y = imageData.height - y;
+        }
+        
+        for(let i = 0; i < ctrl_max_y; i++) {
+            for(let j = 0; j < ctrl_max_x; j++) {
+                let imageDataCopy = imageData;
+                r = getRed(imageDataCopy, (x + i), (y + j));
+                g = getGreen(imageDataCopy, (x + i), (y + j));
+                b = getBlue(imageDataCopy, (x + i), (y + j));
+
+                kernel_value = kernel[i][j];
+
+                sum_r += r * kernel_value;
+                sum_g += g * kernel_value;
+                sum_b += b * kernel_value;
+            }
+        }
+
+        return {
+            r: sum_r / (ANCHO_KERNEL * ALTO_KERNEL),
+            g: sum_g / (ANCHO_KERNEL * ALTO_KERNEL),
+            b: sum_b / (ANCHO_KERNEL * ALTO_KERNEL)};
+    }
+    //#endregion
 }

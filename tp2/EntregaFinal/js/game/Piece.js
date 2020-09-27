@@ -6,6 +6,7 @@ class Piece {
         this.radius = radius;
         this.spotlighted = false;
         this.spotlightedStyle = 'rgba(20, 20, 20, 0.8)';
+        this.unfocusedStyle = 'rgba(120, 120, 120, 0.6)'
         this.initialX = posX;
         this.initialY = posY;
         this.avatar;
@@ -42,25 +43,25 @@ class Piece {
     }
 
     draw() {
-        this.ctx.fillStyle = this.owner.color;
-        
-        this.ctx.beginPath();
-        this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-        this.ctx.fill();
-        this.ctx.closePath();
-        
-        //#region spotlight
-        if(this.spotlighted === true) {
+        if(this.owner.isPlaying() || this.isPlayed) {
+            this.ctx.fillStyle = this.owner.color;
             this.ctx.beginPath();
-            this.ctx.arc(this.posX, this.posY, this.radius * 1.1, 1.5 * Math.PI, Math.PI);
-            this.ctx.strokeStyle = this.spotlightedStyle;
-            this.ctx.lineWidth = 5;
-            this.ctx.stroke();
+            this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+            this.ctx.fill();
             this.ctx.closePath();
-        }
-        //#endregion
-
-        //#region avatar
+            
+            //#region spotlight
+            if(this.spotlighted === true) {
+                this.ctx.beginPath();
+                this.ctx.arc(this.posX, this.posY, this.radius * 1.1, 1.5 * Math.PI, Math.PI);
+                this.ctx.strokeStyle = this.spotlightedStyle;
+                this.ctx.lineWidth = 5;
+                this.ctx.stroke();
+                this.ctx.closePath();
+            }
+            //#endregion
+    
+            //#region avatar
             if(this.avatar != null) {
                 this.ctx.save();
                 let circlePath = new Path2D();
@@ -90,5 +91,14 @@ class Piece {
                 this.ctx.restore();
             }
             //#endregion
+        
+        } else {
+            this.ctx.fillStyle = this.unfocusedStyle;
+            this.ctx.beginPath();
+            this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+            this.ctx.fill();
+            this.ctx.closePath();
+        }
+        
     }
 }

@@ -126,8 +126,12 @@ class Game {
         this.turnPlayer1 = !this.turnPlayer1;
         if(this.turnPlayer1) {
             this.turn = this.player1;
+            this.player1.setPlaying(true);
+            this.player2.setPlaying(false);
         } else {
             this.turn = this.player2;
+            this.player2.setPlaying(true);
+            this.player1.setPlaying(false);
         }
     }
 
@@ -209,10 +213,12 @@ class Game {
         let selected = this.findSelected(e.layerX, e.layerY);
 
         if(selected != null) {
-            // Permite destacar la figura seleccionada
-            selected.setSpotlighted(true);
-            // Variable de control
-            this.lastSelectedFigure = selected;
+            if(!selected.isPlayed && selected.owner == this.turn) {
+                // Permite destacar la figura seleccionada
+                selected.setSpotlighted(true);
+                // Variable de control
+                this.lastSelectedFigure = selected;
+            }
         } 
 
         this.draw();
