@@ -22,13 +22,16 @@ function loadMenu() {
 
     //TO-DO usar HTMLElement Select
     function setScene(e) {
+        if(game != null) {
+            game.finish(null);
+        }  
+
         if(e.target.innerHTML == "Beach") {
             game = new Game(canvas, scenes.beach);
-            game.start();
         } else if (e.target.innerHTML == "River") {
             game = new Game(canvas, scenes.river);
-            game.start();
         }
+        game.start();
     }
     //#endregion
 
@@ -72,6 +75,8 @@ function loadMenu() {
     function startDefault() {
         if(game == null) {
             game = new Game(canvas, scenes.river)
+        } else {
+            game.finish(null);
         }
         game.start();
     }

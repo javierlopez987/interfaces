@@ -17,6 +17,7 @@ class Game {
         this.backLayerLoaded = false;
         this.groundLoaded = false;
         this.scene = scene;
+        this.finished = false;
     }
 
     addPlayer(player) {
@@ -53,6 +54,7 @@ class Game {
     //#region configuracion comienzo del juego
     start() {
         //#region Configuracion y creacion de tablero
+        this.finished = false;
         let boardWidth = 350;
         let boardHeight = 300;
         let boardPositionX = this.canvas.width/2 - boardWidth/2;
@@ -169,6 +171,8 @@ class Game {
     finish(winner) {
         //TO-DO
         // do sth with winner
+        console.log(winner);
+        this.finished = true;
     }
     //#endregion
 
@@ -212,18 +216,20 @@ class Game {
     }
 
     setDragger(e) {
-        let selected = this.findSelected(e.layerX, e.layerY);
-
-        if(selected != null) {
-            if(!selected.isPlayed && selected.owner == this.turn) {
-                // Permite destacar la figura seleccionada
-                selected.setSpotlighted(true);
-                // Variable de control
-                this.lastSelectedFigure = selected;
-            }
-        } 
-
-        this.draw();
+        if(!this.finished) {
+            let selected = this.findSelected(e.layerX, e.layerY);
+    
+            if(selected != null) {
+                if(!selected.isPlayed && selected.owner == this.turn) {
+                    // Permite destacar la figura seleccionada
+                    selected.setSpotlighted(true);
+                    // Variable de control
+                    this.lastSelectedFigure = selected;
+                }
+            } 
+    
+            this.draw();
+        }
     }
 
     startDragging(e) {

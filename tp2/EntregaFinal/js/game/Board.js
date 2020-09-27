@@ -17,19 +17,19 @@ class Board {
     create() {
         this.slots = [];
 
-        let _x = this.width / this.sizeX;
-        let _y = this.height / this.sizeY;
-        let relativeX = this.posX + _x/2;
-        let relativeY = this.posY + _y/2;
+        let relativeWidth = this.width / this.sizeX;
+        let relativeHeight = this.height / this.sizeY;
+        let relativeX = this.posX + relativeWidth / 2;
+        let relativeY = this.posY + relativeHeight / 2;
 
         for (let x = 0; x < this.sizeX; x++) {
             this.slots[x] = [];
             for (let y = 0; y < this.sizeY; y++) {
-                this.slots[x][y] = new Slot(relativeX, relativeY, _x, _y, this.ctx);
-                relativeY = relativeY + _y;
+                this.slots[x][y] = new Slot(relativeX, relativeY, relativeWidth, relativeHeight, this.ctx);
+                relativeY = relativeY + relativeHeight;
             }
-            relativeY = this.posY + _y/2;
-            relativeX = relativeX + _x;
+            relativeY = this.posY + relativeHeight / 2;
+            relativeX = relativeX + relativeWidth;
         }
     }
 

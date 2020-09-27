@@ -17,16 +17,9 @@ class Slot {
         this.leftBottom;
     }
 
-    addPiecePlayed(piece) {
-        this.piecePlayed = piece;
-    }
-
+    //#region visualizacion
     setLayer(layer) {
         this.layer = layer;
-    }
-
-    isEmpty() {
-        return this.piecePlayed == null;
     }
 
     draw() {
@@ -38,4 +31,28 @@ class Slot {
         this.ctx.fill(region, "evenodd");
         this.ctx.closePath();
     }
+    //#endregion
+
+    //#region logica de juego
+    addPiecePlayed(piece) {
+        this.piecePlayed = piece;
+    }
+
+    isEmpty() {
+        return this.piecePlayed == null;
+    }
+
+    setLeft(piece) {
+        this.left = piece;
+    }
+
+    setLeftTop(piece) {
+        this.leftTop = piece;
+    }
+
+    setTop(piece) {
+        this.top = piece;
+    }
+
+    //#endregion
 }
