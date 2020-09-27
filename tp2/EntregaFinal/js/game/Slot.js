@@ -31,13 +31,13 @@ class Slot {
     }
 
     draw() {
-        this.ctx.save();
         let region = new Path2D();
         region.rect(this.posX - this.width/2, this.posY - this.height/2, this.width, this.height);
         region.arc(this.posX, this.posY, this.width* 0.75/2, 0, Math.PI * 2);
         region.closePath();
         this.ctx.fillStyle = this.fill;
         this.ctx.fill(region, "evenodd");
+        this.ctx.closePath();
         // this.ctx.drawImage(this.layer, this.posX - this.width/2, this.posY - this.height/2, this.width, this.height);
         // let circlePath = new Path2D();
         // circlePath.arc(this.posX, this.posY, this.width/2, 0, Math.PI * 2);
@@ -46,7 +46,5 @@ class Slot {
         // this.ctx.arc(this.posX, this.posY, this.width/2, 0, Math.PI * 2);
         // this.ctx.fillStyle = 'rgba(0, 0, 0, 0)';
         // this.ctx.fill();
-        this.ctx.closePath();
-        this.ctx.restore();
     }
 }

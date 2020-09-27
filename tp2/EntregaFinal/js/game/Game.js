@@ -13,6 +13,8 @@ class Game {
         this.frontLayerLoaded = false;
         this.backLayerLoaded = false;
         this.groundLoaded = false;
+        this.lastSelectedFigure = null;
+        this.isDragging = false;
     }
 
     start() {
@@ -73,7 +75,7 @@ class Game {
         this.setEventListenersRender();
 
         //Seteo de EventListeners de lógica de juego
-        // this.setEventListenersLogic();
+        this.setEventListenersLogic();
     }
 
     addPlayer(player) {
@@ -96,7 +98,30 @@ class Game {
     finish() {
 
     }
+    
+    changeTurn() {
+        return this.player;
+    }
 
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        if(this.groundLoaded) {
+            this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
+        }
+
+        if(this.backLayerLoaded && this.frontLayerLoaded) {
+            if(this.pieces != null) {
+                this.board.drawBackLayer();
+                this.pieces.forEach(element => {
+                    element.draw();
+                });
+                this.board.drawFrontLayer();
+            }
+        }
+    }
+
+    //#region eventListeners rendering
     setEventListenersRender() {
         let backLayer = new Image();
         backLayer.src = "./img/frontLayerWood.jpg";
@@ -124,26 +149,85 @@ class Game {
             self.draw();
         });
     }
+    //#endregion
 
-    changeTurn() {
-        return player;
+    //#region logica de drag&drop
+    setEventListenersLogic() {
+        let self = this;
+        this.canvas.addEventListener("mousedown", (e) => self.setDragger(e, self));
+        this.canvas.addEventListener("mousemove", (e) => self.startDragging(e, self));
+        this.canvas.addEventListener("mouseup", (e) => self.unsetDragger(e, self));
+        this.canvas.addEventListener("mouseout", (e) => self.unsetDragger(e, self));
     }
 
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    setDragger(e) {
+        let selected = this.findSelected(e.layerX, e.layerY);
 
-        if(this.groundLoaded) {
-            this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
+        if(selected != null) {
+            // Permite destacar la figura seleccionada
+            selected.setSpotlighted(true);
+            // Variable de control
+            this.lastSelectedFigure = selected;
+        } 
+
+        this.draw();
+    }
+
+    startDragging(e) {
+        if(this.lastSelectedFigure != null) {
+            this.isDragging = true;
+            this.lastSelectedFigure.setPosition(e.layerX, e.layerY);
+            this.draw();
         }
+    }
 
-        if(this.backLayerLoaded && this.frontLayerLoaded) {
-            if(this.pieces != null) {
-                this.board.drawBackLayer();
-                this.pieces.forEach(element => {
-                    element.draw();
-                });
-                this.board.drawFrontLayer();
+    unsetDragger(e) {
+        if(this.isDragging == true) {
+            let self = this;
+            this.checkMove(e, self);
+            this.isDragging = false;
+        }
+        this.unselect();
+        this.draw();
+    }
+
+    unselect() {
+        if(this.lastSelectedFigure != null) {
+            this.lastSelectedFigure.setSpotlighted(false);
+            this.lastSelectedFigure = null;
+        }
+    }
+
+    findSelected(x, y) {
+        for (let index = 0; index < this.pieces.length; index++) {
+            const f = this.pieces[index];
+            if(f.isPointed(x, y)) {
+                return f;
             }
         }
     }
+    //#endregion
+
+    checkMove(e, self) {
+        if(e.type == "mouseup") {
+            let board = self.board.getBoardBox();
+            if(e.layerX < board.leftBorder || e.layerX > board.rightBorder) {
+                self.lastSelectedFigure.resetPosition();
+                self.draw();
+            } else {
+                board = self.board.getBoardBreakpoints();
+                for (let i = 0; i < board.breakpoints.length; i++) {
+                    const breakpoint = board.breakpoints[i];
+                    console.log(breakpoint);
+                    console.log(e.layerX);
+                    if(e.layerX < breakpoint) {
+                        console.log("exito" + breakpoint);
+                        return true;
+                    }
+                    
+                }
+            }
+        }
+    }
+
 }

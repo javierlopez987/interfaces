@@ -55,4 +55,28 @@ class Board {
             });        
         });
     }
+
+    getBoardBox() {
+        return {
+            leftBorder: this.posX,
+            topBorder: this.posY,
+            rightBorder: this.posX + this.width,
+            bottomBorder: this.posY + this.height
+        }
+    }
+
+    getBoardBreakpoints() {
+        let board = {
+            breakpoints: []
+        };
+        for (let i = 0; i <= this.sizeX; i++) {
+            board.breakpoints.push(this.posX + i * this.width / this.sizeX);
+        }
+
+        return board;
+    }
+
+    addPiecePlayed(slot) {
+        
+    }
 }
