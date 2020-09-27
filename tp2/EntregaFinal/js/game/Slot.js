@@ -2,7 +2,6 @@ class Slot {
     constructor(posX, posY, width, height, ctx) {
         this.posX = posX;
         this.posY = posY;
-        this.fill = 'rgba(202, 164, 114, 0.5)';
         this.layer;
         this.ctx= ctx;
         this.width = width;
@@ -35,16 +34,8 @@ class Slot {
         region.rect(this.posX - this.width/2, this.posY - this.height/2, this.width, this.height);
         region.arc(this.posX, this.posY, this.width* 0.75/2, 0, Math.PI * 2);
         region.closePath();
-        this.ctx.fillStyle = this.fill;
+        this.ctx.fillStyle = this.layer;
         this.ctx.fill(region, "evenodd");
         this.ctx.closePath();
-        // this.ctx.drawImage(this.layer, this.posX - this.width/2, this.posY - this.height/2, this.width, this.height);
-        // let circlePath = new Path2D();
-        // circlePath.arc(this.posX, this.posY, this.width/2, 0, Math.PI * 2);
-        // this.ctx.clip(circlePath);
-        // this.ctx.beginPath();
-        // this.ctx.arc(this.posX, this.posY, this.width/2, 0, Math.PI * 2);
-        // this.ctx.fillStyle = 'rgba(0, 0, 0, 0)';
-        // this.ctx.fill();
     }
 }

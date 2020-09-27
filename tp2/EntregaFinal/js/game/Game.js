@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas) {
+    constructor(canvas, scene) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.board;
@@ -16,6 +16,7 @@ class Game {
         this.groundLoaded = false;
         this.lastSelectedFigure = null;
         this.isDragging = false;
+        this.scene = scene;
     }
 
     addPlayer(player) {
@@ -38,7 +39,7 @@ class Game {
             this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
         }
 
-        if(this.backLayerLoaded && this.frontLayerLoaded) {
+        if(this.backLayerLoaded) {
             if(this.pieces != null) {
                 this.board.drawBackLayer();
                 this.pieces.forEach(element => {
@@ -57,7 +58,8 @@ class Game {
         let boardPositionX = this.canvas.width/2 - boardWidth/2;
         let boardPositionY = this.canvas.height/2 - boardHeight/2;
         let amountOfPieces = 42;
-        this.board = new Board(boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
+        this.board = new Board(
+            boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
         this.board.create();
         //#endregion
 
@@ -170,10 +172,21 @@ class Game {
     }
     //#endregion
 
-    //#region eventListeners rendering
+    //#region Configuracion de visualizacion y eventListeners rendering
     setEventListenersRender() {
         let backLayer = new Image();
-        backLayer.src = "./img/frontLayerWood.jpg";
+        this.ground = new Image();
+        
+        if(this.scene == 1) {
+            backLayer.src = Util.scenes.beach.backLayer;
+            this.ground.src = Util.scenes.beach.ground;
+            this.board.setFrontLayer(Util.scenes.beach.frontLayer);
+        } else {
+            backLayer.src = Util.scenes.river.backLayer;
+            this.ground.src = Util.scenes.river.ground;
+            this.board.setFrontLayer(Util.scenes.river.frontLayer);
+        }
+        
         let self = this;
         backLayer.addEventListener('load', function() {
             if(self.board.setBackLayer(this)) {
@@ -182,17 +195,6 @@ class Game {
             };
         });
 
-        let frontLayer = new Image();
-        frontLayer.src = "./img/floor.png";
-        frontLayer.addEventListener('load', function() {
-            if(self.board.setFrontLayer(this)) {
-                self.frontLayerLoaded = true;
-                self.draw();
-            };
-        });
-
-        this.ground = new Image();
-        this.ground.src = "./img/rockTexture.jpg";
         this.ground.addEventListener('load', function() {
             self.groundLoaded = true;
             self.draw();

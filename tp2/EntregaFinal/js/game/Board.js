@@ -33,7 +33,7 @@ class Board {
         }
     }
 
-    //#region metodos de visualizacion
+    //#region visualizacion
     setBackLayer(layer) {
         this.backLayer = layer;
         return this.backLayer != null;
@@ -58,7 +58,7 @@ class Board {
     }
     //#endregion
 
-    //#region metodos de logica de juego
+    //#region logica de juego
     getBoardBox() {
         return {
             leftBorder: this.posX,

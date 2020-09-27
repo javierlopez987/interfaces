@@ -1,4 +1,18 @@
 class Util {
+    static woodenColor = 'rgba(202, 164, 114, 0.5)';
+    static marbleColor =  'rgba(217,222,203, 0.8)';
+    static scenes = { 
+        river: {
+            ground: "./img/rockFloor.jpg",
+            backLayer: "./img/backLayerWood.jpg",
+            frontLayer: this.woodenColor
+        },
+        beach: {
+            ground: "./img/sandFloor.jpg",
+            backLayer: "./img/backLayerMarble.jpg",
+            frontLayer: this.marbleColor
+        }
+    }
 
     static getPositionRdm(initialX, initialY, width, height) {
         return {

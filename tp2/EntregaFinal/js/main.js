@@ -2,17 +2,36 @@
 document.addEventListener('DOMContentLoaded', loadMenu);
 
 function loadMenu() {
-    const WIDTH = 650;
-    const HEIGHT = 400;
-
+    const WIDTH = 700;
+    const HEIGHT = 500;
     let canvas = document.querySelector("canvas");
     canvas.width = WIDTH;
     canvas.height = HEIGHT;
 
-    let game = new Game(canvas);
-    /**
-     * # CONFIGURATION
-     * */
+    let game;
+    let scenes = {
+        beach: 1,
+        river: 2
+    }
+
+    //#region SCENES
+    let btn_scenes = document.querySelectorAll(".scenes");
+    for (const btn of btn_scenes) {
+        btn.addEventListener("click", setScene);
+    }
+
+    //TO-DO usar HTMLElement Select
+    function setScene(e) {
+        if(e.target.innerHTML == "Beach") {
+            game = new Game(canvas, scenes.beach);
+            game.start();
+        } else if (e.target.innerHTML == "River") {
+            game = new Game(canvas, scenes.river);
+            game.start();
+        }
+    }
+    //#endregion
+
     //#region AVATAR LOAD BUTTON
     let btn_avatar = document.querySelectorAll(".load_avatar");
     btn_avatar.forEach(element => {
@@ -47,10 +66,14 @@ function loadMenu() {
     //#endregion
 
     //#region GAME START
-    let start_btn = document.querySelector(".start");
-    start_btn.addEventListener("click", start);
+    let restart_btn = document.querySelector(".restart");
+    restart_btn.addEventListener("click", startDefault);
 
-    function start() {
+    function startDefault() {
+        if(game == null) {
+            game = new Game(canvas, scenes.river)
+        }
         game.start();
     }
+    //#endregion
 }
