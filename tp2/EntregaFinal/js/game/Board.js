@@ -33,6 +33,7 @@ class Board {
         }
     }
 
+    //#region metodos de visualizacion
     setBackLayer(layer) {
         this.backLayer = layer;
         return this.backLayer != null;
@@ -55,7 +56,9 @@ class Board {
             });        
         });
     }
+    //#endregion
 
+    //#region metodos de logica de juego
     getBoardBox() {
         return {
             leftBorder: this.posX,
@@ -99,9 +102,11 @@ class Board {
             if(slot.isEmpty()) {
                 piece.setPlayed(slot);
                 slot.addPiecePlayed(piece);
+                return piece;
             } 
         } else {
             piece.resetPosition();
         }
     }
+    //#endregion
 }

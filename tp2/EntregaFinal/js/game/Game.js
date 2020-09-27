@@ -1,13 +1,14 @@
 class Game {
     constructor(canvas) {
         this.canvas = canvas;
-        this.ctx;
+        this.ctx = this.canvas.getContext("2d");
         this.board;
         this.pieces;
         this.player1;
         this.player2;
         this.turn;
-        this.gameRound;
+        this.turnPlayer1 = false;
+        this.gameRound = 0;
         this.lastMove;
         this.ground;
         this.frontLayerLoaded = false;
@@ -17,10 +18,40 @@ class Game {
         this.isDragging = false;
     }
 
-    start() {
-        this.ctx = this.canvas.getContext("2d");
+    addPlayer(player) {
+        if(this.player1 == null) {
+            this.player1 = player;
+        } else if (this.player2 == null) {
+            this.player2 = player;
+        }
+    }
 
-        //Configuracion y creacion de tablero
+    setPlayers(player1, player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+    }
+
+    draw() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        if(this.groundLoaded) {
+            this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
+        }
+
+        if(this.backLayerLoaded && this.frontLayerLoaded) {
+            if(this.pieces != null) {
+                this.board.drawBackLayer();
+                this.pieces.forEach(element => {
+                    element.draw();
+                });
+                this.board.drawFrontLayer();
+            }
+        }
+    }
+
+    //#region configuracion comienzo del juego
+    start() {
+        //#region Configuracion y creacion de tablero
         let boardWidth = 350;
         let boardHeight = 300;
         let boardPositionX = this.canvas.width/2 - boardWidth/2;
@@ -28,12 +59,14 @@ class Game {
         let amountOfPieces = 42;
         this.board = new Board(boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
         this.board.create();
+        //#endregion
 
-        //Configuracion y creacion de jugadores
+        //#region Configuracion y creacion de jugadores
         this.player1 = new Player("Player1", null);
         this.player2 = new Player("Player2", null);
+        //#endregion
 
-        //Configuracion y creacion de piezas
+        //#region Configuracion y creacion de piezas
         let pieceRadius = 20;
         let pieceSize = 20 * 2;
         let player1Box = 
@@ -70,56 +103,64 @@ class Game {
                 this.pieces[index] = new Piece(pos.x, pos.y, 20, 'rgba(20, 20, 180, 0.95)', this.ctx);
             }
         }
+        //#endregion
 
         //Seteo de EventListeners de renderizado
         this.setEventListenersRender();
 
         //Seteo de EventListeners de lógica de juego
         this.setEventListenersLogic();
-    }
 
-    addPlayer(player) {
-        if(this.player1 == null) {
-            this.player1 = player;
-        } else if (this.player2 == null) {
-            this.player2 = player;
+        //Seteo de first round
+        this.nextGameRound();
+    }
+    //#endregion
+
+    //#region logica de juego
+    nextGameRound() {
+        this.gameRound++;
+        this.turnPlayer1 = !this.turnPlayer1;
+        if(this.turnPlayer1) {
+            this.turn = this.player1;
+        } else {
+            this.turn = this.player2;
         }
     }
 
-    setPlayers(player1, player2) {
-        this.player1 = player1;
-        this.player2 = player2;
-    }
-
-    checkWinner() {
-        return false;
-    }
-
-    finish() {
-
-    }
-    
-    changeTurn() {
-        return this.player;
-    }
-
-    draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        if(this.groundLoaded) {
-            this.ctx.drawImage(this.ground, 0, 0, this.canvas.width, this.canvas.height);
-        }
-
-        if(this.backLayerLoaded && this.frontLayerLoaded) {
-            if(this.pieces != null) {
-                this.board.drawBackLayer();
-                this.pieces.forEach(element => {
-                    element.draw();
-                });
-                this.board.drawFrontLayer();
+    checkMove(e, self) {
+        if(e.type == "mouseup") {
+            let board = self.board.getBoardBox();
+            if(e.layerX < board.leftBorder || e.layerX > board.rightBorder) {
+                self.lastSelectedFigure.resetPosition();
+                self.draw();
+            } else {
+                board = self.board.getBoardBreakpoints();
+                for (let i = 0; i < board.breakpoints.length; i++) {
+                    const breakpoint = board.breakpoints[i];
+                    if(e.layerX < breakpoint) {
+                        let columnNumber = (breakpoint - self.board.posX) / 
+                            (self.board.width / self.board.sizeX);
+                        return self.board.addPiecePlayed(self.lastSelectedFigure, columnNumber);
+                    }
+                }
             }
         }
     }
+
+    checkWinner() {
+        let winner = null;
+        if(winner == null) {
+            this.nextGameRound();
+        } else {
+            this.finish(winner);
+        }
+    }
+
+    finish(winner) {
+        //TO-DO
+        // do sth with winner
+    }
+    //#endregion
 
     //#region eventListeners rendering
     setEventListenersRender() {
@@ -151,7 +192,7 @@ class Game {
     }
     //#endregion
 
-    //#region logica de drag&drop
+    //#region eventListener & logica de drag&drop
     setEventListenersLogic() {
         let self = this;
         this.canvas.addEventListener("mousedown", (e) => self.setDragger(e, self));
@@ -184,7 +225,9 @@ class Game {
     unsetDragger(e) {
         if(this.isDragging == true) {
             let self = this;
-            this.checkMove(e, self);
+            if(this.checkMove(e, self) != null) {
+                this.checkWinner();
+            };
             this.isDragging = false;
         }
         this.unselect();
@@ -207,27 +250,5 @@ class Game {
         }
     }
     //#endregion
-
-    checkMove(e, self) {
-        if(e.type == "mouseup") {
-            let board = self.board.getBoardBox();
-            if(e.layerX < board.leftBorder || e.layerX > board.rightBorder) {
-                self.lastSelectedFigure.resetPosition();
-                self.draw();
-            } else {
-                board = self.board.getBoardBreakpoints();
-                for (let i = 0; i < board.breakpoints.length; i++) {
-                    const breakpoint = board.breakpoints[i];
-                    if(e.layerX < breakpoint) {
-                        let columnNumber = (breakpoint - self.board.posX) / 
-                            (self.board.width / self.board.sizeX);
-                        self.board.addPiecePlayed(self.lastSelectedFigure, columnNumber);
-                        return columnNumber;
-                    }
-                    
-                }
-            }
-        }
-    }
 
 }

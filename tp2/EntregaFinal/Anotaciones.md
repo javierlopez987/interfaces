@@ -18,3 +18,14 @@ Jugar con dos imagenes:
 
 (Ver Email de Cristian)
 Tener una textura para cada uno de los cuadraditos, tipo tapitas de cada ficha.
+
+## Flujo de juego
+1) Comienza --> start
+2) Turno proximo jugador --> nextGameRound
+3) Chequea jugada valida --> checkMove
+4) Chequea ganador --> checkWinner
+4-a) No hay ganador
+    Vuelve al 2)
+4-b) Hay ganador
+    Pasa al 5)
+5) Finaliza el juego --> finish
