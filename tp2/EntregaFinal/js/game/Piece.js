@@ -2,14 +2,13 @@ class Piece {
     constructor(posX, posY, radius, ctx, owner) {
         this.posX = posX;
         this.posY = posY;
+        this.initialX = posX;
+        this.initialY = posY;
         this.ctx = ctx;
         this.radius = radius;
         this.spotlighted = false;
         this.spotlightedStyle = 'rgba(20, 20, 20, 0.8)';
         this.unfocusedStyle = 'rgba(120, 120, 120, 0.6)'
-        this.initialX = posX;
-        this.initialY = posY;
-        this.avatar;
         this.isPlayed = false;
         this.slotPlayed;
         this.owner = owner;
@@ -62,7 +61,7 @@ class Piece {
             //#endregion
     
             //#region avatar
-            if(this.avatar != null) {
+            if(this.owner.avatar != null) {
                 this.ctx.save();
                 let circlePath = new Path2D();
                 circlePath.arc(this.posX, this.posY, this.radius * 0.9, 0, 2 * Math.PI);

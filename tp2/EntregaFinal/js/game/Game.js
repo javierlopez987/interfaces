@@ -10,12 +10,12 @@ class Game {
         this.turnPlayer1 = false;
         this.gameRound = 0;
         this.lastMove;
+        this.lastSelectedFigure = null;
+        this.isDragging = false;
         this.ground;
         this.frontLayerLoaded = false;
         this.backLayerLoaded = false;
         this.groundLoaded = false;
-        this.lastSelectedFigure = null;
-        this.isDragging = false;
         this.scene = scene;
     }
 
