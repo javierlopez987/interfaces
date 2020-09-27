@@ -76,7 +76,32 @@ class Board {
         return board;
     }
 
-    addPiecePlayed(slot) {
-        
+    addPiecePlayed(piece, columnNumber) {
+        let index = columnNumber -1;
+        let columnSlots = this.slots[index];
+        let prevIndex;
+
+        let i = 0;
+        let slot;
+        while(i < columnSlots.length) {
+            slot = columnSlots[i];
+            if(slot == null) {
+                i = columnSlots.length;
+            } else if (!slot.isEmpty()) {
+                prevIndex = i - 1;
+                slot = columnSlots[prevIndex];
+                i = columnSlots.length;
+            }
+            i++;
+        }
+
+        if(slot != null) {
+            if(slot.isEmpty()) {
+                piece.setPlayed(slot);
+                slot.addPiecePlayed(piece);
+            } 
+        } else {
+            piece.resetPosition();
+        }
     }
 }

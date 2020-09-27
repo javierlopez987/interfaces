@@ -218,11 +218,11 @@ class Game {
                 board = self.board.getBoardBreakpoints();
                 for (let i = 0; i < board.breakpoints.length; i++) {
                     const breakpoint = board.breakpoints[i];
-                    console.log(breakpoint);
-                    console.log(e.layerX);
                     if(e.layerX < breakpoint) {
-                        console.log("exito" + breakpoint);
-                        return true;
+                        let columnNumber = (breakpoint - self.board.posX) / 
+                            (self.board.width / self.board.sizeX);
+                        self.board.addPiecePlayed(self.lastSelectedFigure, columnNumber);
+                        return columnNumber;
                     }
                     
                 }
