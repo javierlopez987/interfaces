@@ -64,26 +64,30 @@ class Game {
         //#region Configuracion y creacion de jugadores
         this.player1 = new Player("Player1", null);
         this.player2 = new Player("Player2", null);
+        this.player1.setColor('rgba(180, 20, 20, 0.95)');
+        this.player2.setColor('rgba(20, 20, 180, 0.95)');
         //#endregion
 
         //#region Configuracion y creacion de piezas
+        //Configuracion relacionada con piezas
         let pieceRadius = 20;
         let pieceSize = 20 * 2;
         let player1Box = 
-            {
-                leftBorder: pieceRadius,
-                topBorder: pieceRadius,
-                widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
-                heightBox: this.canvas.height - pieceSize
-            };
+        {
+            leftBorder: pieceRadius,
+            topBorder: pieceRadius,
+            widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
+            heightBox: this.canvas.height - pieceSize
+        };
         let player2Box = 
-            {
-                leftBorder: this.board.width + (this.canvas.width - this.board.width) / 2 + pieceRadius,
-                topBorder: pieceRadius,
-                widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
-                heightBox: this.canvas.height - pieceSize
-            };
-
+        {
+            leftBorder: this.board.width + (this.canvas.width - this.board.width) / 2 + pieceRadius,
+            topBorder: pieceRadius,
+            widthBox: (this.canvas.width - this.board.width) / 2 - pieceSize,
+            heightBox: this.canvas.height - pieceSize
+        };
+        
+        //Creacion de piezas
         this.pieces = new Array(this.board.size);
         for (let index = 0; index < this.pieces.length; index++) {
             let pos;
@@ -93,14 +97,14 @@ class Game {
                     player1Box.topBorder, 
                     player1Box.widthBox, 
                     player1Box.heightBox);
-                this.pieces[index] = new Piece(pos.x, pos.y, 20, 'rgba(180, 20, 20, 0.95)', this.ctx);
+                this.pieces[index] = new Piece(pos.x, pos.y, pieceRadius, this.ctx, this.player1);
             } else {
                 pos = Util.getPositionRdm(
                     player2Box.leftBorder, 
                     player2Box.topBorder, 
                     player2Box.widthBox, 
                     player2Box.heightBox);
-                this.pieces[index] = new Piece(pos.x, pos.y, 20, 'rgba(20, 20, 180, 0.95)', this.ctx);
+                this.pieces[index] = new Piece(pos.x, pos.y, pieceRadius, this.ctx, this.player2);
             }
         }
         //#endregion

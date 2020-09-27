@@ -1,8 +1,7 @@
 class Piece {
-    constructor(posX, posY, radius, fill, ctx) {
+    constructor(posX, posY, radius, ctx, owner) {
         this.posX = posX;
         this.posY = posY;
-        this.fill = fill;
         this.ctx = ctx;
         this.radius = radius;
         this.spotlighted = false;
@@ -12,6 +11,7 @@ class Piece {
         this.avatar;
         this.isPlayed = false;
         this.slotPlayed;
+        this.owner = owner;
     }
 
     isPointed(x, y) {
@@ -42,7 +42,7 @@ class Piece {
     }
 
     draw() {
-        this.ctx.fillStyle = this.fill;
+        this.ctx.fillStyle = this.owner.color;
         
         this.ctx.beginPath();
         this.ctx.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
@@ -53,8 +53,6 @@ class Piece {
         if(this.spotlighted === true) {
             this.ctx.beginPath();
             this.ctx.arc(this.posX, this.posY, this.radius * 1.1, 1.5 * Math.PI, Math.PI);
-            this.ctx.fillStyle = Util.getRgbaRdm();
-            this.ctx.fill();
             this.ctx.strokeStyle = this.spotlightedStyle;
             this.ctx.lineWidth = 5;
             this.ctx.stroke();
