@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/style.css">
     <!-- Inicio Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -27,50 +27,47 @@
     <title>Game 4-In-A-Row</title>
 </head>
 <body class="d-flex flex-column">
-    <header class="p-2">
-        <h1>4-In-A-Row Game</h1>
-    </header>
     <main class="p-2 d-flex flex-row justify-content-around">
-        <aside class="p-2 w-25 p-3">
-            <div class="btn-group-vertical w-100 p-3">
-                <!-- Default dropright button -->
-                <nav class="btn-group dropright">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Scene</button>
+        <aside class="p-2 w-25 p-3 d-flex flex-column">
+            <section class="p-2">
+                <div class="btn-group-vertical w-100 p-3">
+                    <nav class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Player1</button>
                         <div class="dropdown-menu">
-                            <button class="btn btn-light btn-block scenes">Beach</button>
-                            <button class="btn btn-light btn-block scenes">River</button>
+                            <input type="text" placeholder="Nickname" class="nickname" id="nickPlayer1">
+                            <button class="btn btn-light btn-block load_avatar">Avatar Player 1</button>
+                            <input type="file" class="d-none input_image" id="player1" accept="image/jpeg, image/png"></input>
                         </div>
+                    </nav>
+                    <nav class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Player2</button>
+                        <div class="dropdown-menu">
+                            <input type="text" placeholder="Nickname" class="nickname" id="nickPlayer2">
+                            <button class="btn btn-light btn-block load_avatar">Avatar Player 2</button>
+                            <input type="file" class="d-none input_image" id="player2" accept="image/jpeg, image/png"></input>
+                        </div>
+                    </nav>
+                </div>
+                <div class="btn-group-vertical w-100 p-3">
+                    <select class="bg-info text-light custom-select scenes">
+                        <option selected value="1">River</option>
+                        <option value="2">Beach</option>
                     </select>
-                </nav>
-                <nav class="btn-group dropright">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Player1</button>
-                    <div class="dropdown-menu">
-                        <input type="text" placeholder="Nickname" class="nickname" id="nickPlayer1">
-                        <button class="btn btn-light btn-block load_avatar">Avatar Player 1</button>
-                        <input type="file" class="d-none input_image" id="player1" accept="image/jpeg, image/png"></input>
-                    </div>
-                </nav>
-                <nav class="btn-group dropright">
-                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">Player2</button>
-                    <div class="dropdown-menu">
-                        <input type="text" placeholder="Nickname" class="nickname" id="nickPlayer2">
-                        <button class="btn btn-light btn-block load_avatar">Avatar Player 2</button>
-                        <input type="file" class="d-none input_image" id="player2" accept="image/jpeg, image/png"></input>
-                    </div>
-                </nav>
-                <button type="button" class="btn btn-success btn-block restart">Restart</button>
-            </div>
+                </div>
+                <div class="btn-group-vertical w-100 p-3">
+                    <button type="button" class="btn btn-success btn-block start">Play</button>
+                </div>
+            </section>
+            <section class="p-2 d-flex flex-column">
+                <img class="logo" src="">
+            </section>
         </aside>
         <section class="p-2 w-75 p-3">
-            <canvas>
+            <canvas class="game">
             </canvas>
         </section>
     </main>
-    <footer class="p-2">
-        <span>Autor: Javier López Ferreira</span>
-    </footer>
 </body>
 </html>

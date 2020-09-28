@@ -42,17 +42,5 @@ class Slot {
         return this.piecePlayed == null;
     }
 
-    setLeft(piece) {
-        this.left = piece;
-    }
-
-    setLeftTop(piece) {
-        this.leftTop = piece;
-    }
-
-    setTop(piece) {
-        this.top = piece;
-    }
-
     //#endregion
 }

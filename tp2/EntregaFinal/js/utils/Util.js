@@ -13,6 +13,7 @@ class Util {
             frontLayer: this.marbleColor
         }
     }
+    static logo = "./img/4-In-A-Row.png";
 
     static getPositionRdm(initialX, initialY, width, height) {
         return {
@@ -153,5 +154,46 @@ class Util {
             g: sum_g / (ANCHO_KERNEL * ALTO_KERNEL),
             b: sum_b / (ANCHO_KERNEL * ALTO_KERNEL)};
     }
+    //#endregion
+
+    //#region logica auxiliar para vincular casilleros del tablero segun indice en la matriz
+    static getNeighbors(i, j) {
+        let neighbors = {
+            left: {
+                i: i - 1,
+                j: j
+            },
+            leftTop: {
+                i: i - 1,
+                j: j - 1
+            },
+            top: {
+                i: i,
+                j: j - 1
+            },
+            rightTop: {
+                i: i + 1,
+                j: j - 1
+            },
+            right: {
+                i: i + 1,
+                j: j  
+            },
+            rightBottom: {
+                i: i + 1,
+                j: j + 1
+            },
+            bottom: {
+                i: i,
+                j: j + 1
+            },
+            leftBottom: {
+                i: i - 1,
+                j: j + 1
+            }
+        }
+        return neighbors;
+    }
+
     //#endregion
 }

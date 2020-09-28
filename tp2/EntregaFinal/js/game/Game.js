@@ -1,5 +1,5 @@
 class Game {
-    constructor(canvas, scene) {
+    constructor(canvas) {
         this.canvas = canvas;
         this.ctx = this.canvas.getContext("2d");
         this.board;
@@ -16,7 +16,7 @@ class Game {
         this.frontLayerLoaded = false;
         this.backLayerLoaded = false;
         this.groundLoaded = false;
-        this.scene = scene;
+        this.scene;
         this.finished = false;
     }
 
@@ -26,11 +26,6 @@ class Game {
         } else if (this.player2 == null) {
             this.player2 = player;
         }
-    }
-
-    setPlayers(player1, player2) {
-        this.player1 = player1;
-        this.player2 = player2;
     }
 
     draw() {
@@ -181,7 +176,7 @@ class Game {
         let backLayer = new Image();
         this.ground = new Image();
         
-        if(this.scene == 1) {
+        if(this.scene == 2) {
             backLayer.src = Util.scenes.beach.backLayer;
             this.ground.src = Util.scenes.beach.ground;
             this.board.setFrontLayer(Util.scenes.beach.frontLayer);
@@ -218,7 +213,8 @@ class Game {
     setDragger(e) {
         if(!this.finished) {
             let selected = this.findSelected(e.layerX, e.layerY);
-    
+        
+
             if(selected != null) {
                 if(!selected.isPlayed && selected.owner == this.turn) {
                     // Permite destacar la figura seleccionada
@@ -227,35 +223,41 @@ class Game {
                     this.lastSelectedFigure = selected;
                 }
             } 
-    
+
             this.draw();
         }
     }
 
     startDragging(e) {
-        if(this.lastSelectedFigure != null) {
-            this.isDragging = true;
-            this.lastSelectedFigure.setPosition(e.layerX, e.layerY);
-            this.draw();
+        if(!this.finished) {
+            if(this.lastSelectedFigure != null) {
+                this.isDragging = true;
+                this.lastSelectedFigure.setPosition(e.layerX, e.layerY);
+                this.draw();
+            }
         }
     }
 
     unsetDragger(e) {
-        if(this.isDragging == true) {
-            let self = this;
-            if(this.checkMove(e, self) != null) {
-                this.checkWinner();
-            };
-            this.isDragging = false;
+        if(!this.finished) {
+            if(this.isDragging == true) {
+                let self = this;
+                if(this.checkMove(e, self) != null) {
+                    this.checkWinner();
+                };
+                this.isDragging = false;
+            }
+            this.unselect();
+            this.draw();
         }
-        this.unselect();
-        this.draw();
     }
 
     unselect() {
-        if(this.lastSelectedFigure != null) {
-            this.lastSelectedFigure.setSpotlighted(false);
-            this.lastSelectedFigure = null;
+        if(!this.finished) {
+            if(this.lastSelectedFigure != null) {
+                this.lastSelectedFigure.setSpotlighted(false);
+                this.lastSelectedFigure = null;
+            }
         }
     }
 

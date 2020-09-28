@@ -9,31 +9,14 @@ function loadMenu() {
     canvas.height = HEIGHT;
 
     let game;
-    let scenes = {
-        beach: 1,
-        river: 2
-    }
 
-    //#region SCENES
-    let btn_scenes = document.querySelectorAll(".scenes");
-    for (const btn of btn_scenes) {
-        btn.addEventListener("click", setScene);
-    }
-
-    //TO-DO usar HTMLElement Select
-    function setScene(e) {
-        if(game != null) {
-            game.finish(null);
-        }  
-
-        if(e.target.innerHTML == "Beach") {
-            game = new Game(canvas, scenes.beach);
-        } else if (e.target.innerHTML == "River") {
-            game = new Game(canvas, scenes.river);
-        }
-        game.start();
-    }
-    //#endregion
+    let logo = document.querySelector(".logo");
+    logo.src = Util.logo;
+    logo.addEventListener('load', function() {
+        console.log(prev);
+        this.width = WIDTH * 1/4;
+        this.height = WIDTH * 1/4;
+    })
 
     //#region AVATAR LOAD BUTTON
     let btn_avatar = document.querySelectorAll(".load_avatar");
@@ -69,15 +52,17 @@ function loadMenu() {
     //#endregion
 
     //#region GAME START
-    let restart_btn = document.querySelector(".restart");
-    restart_btn.addEventListener("click", startDefault);
+    let start_btn = document.querySelector(".start");
+    start_btn.addEventListener("click", startDefault);
 
     function startDefault() {
+        let scene = document.querySelector(".scenes").value;
         if(game == null) {
-            game = new Game(canvas, scenes.river)
+            game = new Game(canvas, scene);
         } else {
             game.finish(null);
         }
+        game.scene = scene;
         game.start();
     }
     //#endregion
