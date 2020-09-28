@@ -21,4 +21,13 @@ class Player {
     setColor(color) {
         this.color = color;
     }
+
+    draw(ctx, board) {
+        let sizeLetter = 80;
+        ctx.fillStyle = this.color;
+        ctx.font = `bold ${sizeLetter}px serif`;
+        ctx.fillText(this.name, board.posX, board.posY);
+        ctx.fillText('wins!', board.posX, (board.posY + sizeLetter));
+        
+    }
 }

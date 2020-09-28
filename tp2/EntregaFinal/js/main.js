@@ -13,7 +13,6 @@ function loadMenu() {
     let logo = document.querySelector(".logo");
     logo.src = Util.logo;
     logo.addEventListener('load', function() {
-        console.log(prev);
         this.width = WIDTH * 1/4;
         this.height = WIDTH * 1/4;
     })
@@ -59,6 +58,8 @@ function loadMenu() {
         let scene = document.querySelector(".scenes").value;
         if(game == null) {
             game = new Game(canvas, scene);
+        } else if (game.finished) {
+            game = new Game(canvas, scene)
         } else {
             game.finish(null);
         }

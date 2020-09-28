@@ -14,6 +14,7 @@ class Piece {
         this.owner = owner;
     }
 
+    //#region logica de juego
     isPointed(x, y) {
         let _x = this.posX - x;
         let _y = this.posY - y;
@@ -40,6 +41,47 @@ class Piece {
         this.setPosition(slot.posX, slot.posY);
         this.isPlayed = true;
     }
+
+    findWinner() {
+        let winner;
+        if(this.isPlayed) {
+            if(this.slotPlayed.left != null) {
+                winner = this.slotPlayed.findWinner(0, "left");
+            }
+            if(winner == null) {
+                if(this.slotPlayed.leftTop != null) {
+                    winner = this.slotPlayed.findWinner(0, "leftTop");
+                }
+            }
+            if(winner == null) {
+                if(this.slotPlayed.rightTop != null) {
+                    winner = this.slotPlayed.findWinner(0, "rightTop");
+                }
+            }
+            if(winner == null) {
+                if(this.slotPlayed.right != null) {
+                    winner = this.slotPlayed.findWinner(0, "right");
+                }
+            }
+            if(winner == null) {
+                if(this.slotPlayed.rightBottom != null) {
+                    winner = this.slotPlayed.findWinner(0, "rightBottom");
+                }
+            }
+            if(winner == null) {
+                if(this.slotPlayed.bottom != null) {
+                    winner = this.slotPlayed.findWinner(0, "bottom");
+                }
+            }
+            if(winner == null) {
+                if(this.slotPlayed.leftBottom != null) {
+                    winner = this.slotPlayed.findWinner(0, "leftBottom");
+                }
+            }
+        }
+        return winner;
+    }
+    //#endregion
 
     draw() {
         if(this.owner.isPlaying() || this.isPlayed) {
