@@ -8,7 +8,7 @@ class Game {
         this.player2;
         this.turn;
         this.turnPlayer1 = false;
-        this.gameRound = 0;
+        this.gameRound;
         this.lastMove;
         this.lastSelectedFigure = null;
         this.isDragging = false;
@@ -18,6 +18,7 @@ class Game {
         this.groundLoaded = false;
         this.scene;
         this.finished = false;
+        this.piecesInARowToWin = 4;
     }
 
     addPlayer(player) {
@@ -50,6 +51,7 @@ class Game {
     start() {
         //#region Configuracion y creacion de tablero
         this.finished = false;
+        this.gameRound = 0;
         let boardWidth = 350;
         let boardHeight = 300;
         let boardPositionX = this.canvas.width/2 - boardWidth/2;
@@ -147,27 +149,35 @@ class Game {
                     if(e.layerX < breakpoint) {
                         let columnNumber = (breakpoint - self.board.posX) / 
                             (self.board.width / self.board.sizeX);
-                        return self.board.addPiecePlayed(self.lastSelectedFigure, columnNumber);
+                            return self.board.addPiecePlayed(self.lastSelectedFigure, columnNumber);
                     }
                 }
             }
         }
     }
 
-    checkWinner() {
-        let winner = null;
-        if(winner == null) {
-            this.nextGameRound();
-        } else {
-            this.finish(winner);
+    checkRound() {
+        this.nextGameRound();
+        if(this.gameRound >= this.piecesInARowToWin * 2) {
+            this.checkWinner();
         }
+    }
+
+    checkWinner() {
+
+        let winner = this.lastMove.findWinner();
+        if(winner != null) {
+            this.finish(winner);
+        } 
     }
 
     finish(winner) {
         //TO-DO
         // do sth with winner
         console.log(winner);
+        this.isDragging = false;
         this.finished = true;
+        this.displayWinner(winner);
     }
     //#endregion
 
@@ -198,6 +208,11 @@ class Game {
             self.groundLoaded = true;
             self.draw();
         });
+    }
+
+    displayWinner(winner) {
+        this.draw();
+        winner.draw(this.ctx, this.board);
     }
     //#endregion
 
@@ -242,8 +257,13 @@ class Game {
         if(!this.finished) {
             if(this.isDragging == true) {
                 let self = this;
-                if(this.checkMove(e, self) != null) {
-                    this.checkWinner();
+                let pieceMoved = this.checkMove(e, self);
+                if(pieceMoved != null) {
+                    this.lastMove = pieceMoved;
+                    this.checkRound();
+                    if(this.finished) {
+                        return pieceMoved;
+                    }
                 };
                 this.isDragging = false;
             }
