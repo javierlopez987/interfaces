@@ -172,12 +172,11 @@ class Game {
     }
 
     finish(winner) {
-        //TO-DO
-        // do sth with winner
-        console.log(winner);
         this.isDragging = false;
         this.finished = true;
-        this.displayWinner(winner);
+        if(winner != null) {
+            this.displayWinner(winner);
+        } 
     }
     //#endregion
 
