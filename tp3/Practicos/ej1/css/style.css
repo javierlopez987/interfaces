@@ -1,0 +1,44 @@
+header {
+    background-color: thistle;
+}
+
+main {
+    background-image: url("img/landscape.jpg");
+}
+
+aside ul {
+    background: linear-gradient(to bottom, tomato, white);
+}
+
+footer {
+    background-color: teal;
+}
+
+header div {
+    color: red;
+}
+
+main div {
+    height: 80px;
+    width: 80px;
+    color: blue;
+    border: 2px solid tomato;
+}
+
+section>div.absolute {
+    position: absolute;
+    top: 40px; left: 40px;
+}
+
+.relative {
+    position: relative;
+    top: 40px; left: 40px;
+}
+
+aside div li {
+    color: green;
+}
+
+footer div {
+    color: purple;
+}
