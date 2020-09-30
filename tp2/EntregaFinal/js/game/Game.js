@@ -222,10 +222,14 @@ class Game {
     //#region eventListeners configuracion players
     setEventListenersConfigPlayers() {
         let nickname1 = document.querySelector("#nickPlayer1");
-        this.player1.name = nickname1.value;
+        if(nickname1.value != "") {
+            this.player1.name = nickname1.value;
+        }
 
         let nickname2 = document.querySelector("#nickPlayer2");
-        this.player2.name = nickname2.value;
+        if(nickname2.value != "") {
+            this.player2.name = nickname2.value;
+        }
 
     }
     //#endregion
