@@ -49,7 +49,6 @@ class Game {
 
     //#region configuracion comienzo del juego
     start() {
-        //#region Configuracion y creacion de tablero
         this.finished = false;
         this.gameRound = 0;
         let boardWidth = 350;
@@ -60,16 +59,13 @@ class Game {
         this.board = new Board(
             boardPositionX, boardPositionY, boardWidth, boardHeight, amountOfPieces, this.ctx);
         this.board.create();
-        //#endregion
 
-        //#region Configuracion y creacion de jugadores
+        //Creacion de jugadores
         this.player1 = new Player("Player1", null);
         this.player2 = new Player("Player2", null);
         this.player1.setColor('rgba(180, 20, 20, 0.95)');
         this.player2.setColor('rgba(20, 20, 180, 0.95)');
-        //#endregion
 
-        //#region Configuracion y creacion de piezas
         //Configuracion relacionada con piezas
         let pieceRadius = 20;
         let pieceSize = 20 * 2;
@@ -108,10 +104,12 @@ class Game {
                 this.pieces[index] = new Piece(pos.x, pos.y, pieceRadius, this.ctx, this.player2);
             }
         }
-        //#endregion
 
         //Seteo de EventListeners de renderizado
         this.setEventListenersRender();
+
+        //Seteo de EventListeners de config players
+        this.setEventListenersConfigPlayers();
 
         //Seteo de EventListeners de lógica de juego
         this.setEventListenersLogic();
@@ -212,6 +210,17 @@ class Game {
     displayWinner(winner) {
         this.draw();
         winner.draw(this.ctx, this.board);
+    }
+    //#endregion
+
+    //#region eventListeners configuracion players
+    setEventListenersConfigPlayers() {
+        let nickname1 = document.querySelector("#nickPlayer1");
+        this.player1.name = nickname1.value;
+
+        let nickname2 = document.querySelector("#nickPlayer2");
+        this.player2.name = nickname2.value;
+
     }
     //#endregion
 

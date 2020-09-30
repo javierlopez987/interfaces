@@ -1,4 +1,6 @@
 class Util {
+    static avatarPlayer1;
+    static avatarPlayer2;
     static woodenColor = 'rgba(202, 164, 114, 0.5)';
     static marbleColor =  'rgba(217,222,203, 0.8)';
     static scenes = { 

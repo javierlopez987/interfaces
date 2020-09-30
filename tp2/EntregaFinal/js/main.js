@@ -23,8 +23,7 @@ function loadMenu() {
         element.addEventListener("click", inputListener);
     });
 
-    function inputListener(e) {
-        console.log(e.target.nextElementSibling.id);
+    function inputListener() {
         let input_image = document.querySelector(".input_image");
         input_image.click();
         input_image.addEventListener("change", loadAvatar);
@@ -35,17 +34,20 @@ function loadMenu() {
 
         let reader = new FileReader();
         let player = e.target.id;
-        reader.addEventListener('load', (e) => setPlayer(e, player))
+        reader.addEventListener('load', (e) => setAvatar(e, player))
         reader.readAsDataURL(file);
     }
 
-    function setPlayer(e, player) {
+    function setAvatar(e, player) {
         let path = e.target.result;
         let avatar = new Image();
         avatar.src = path;
         avatar.addEventListener('load', function() {
-            let newPlayer = new Player(player, this);
-            game.addPlayer(newPlayer);
+            if(player == 1) {
+                Util.avatarPlayer1 = this;
+            } else if(player == 2) {
+                Util.avatarPlayer2 = this;
+            }
         })
     }
     //#endregion

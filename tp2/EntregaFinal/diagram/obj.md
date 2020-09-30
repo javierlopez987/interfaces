@@ -6,3 +6,4 @@ Board: board
 	size = 42
 	sizeX = 7
 	sizeY = 6
+	
