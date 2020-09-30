@@ -23,8 +23,13 @@ function loadMenu() {
         element.addEventListener("click", inputListener);
     });
 
-    function inputListener() {
-        let input_image = document.querySelector(".input_image");
+    function inputListener(e) {
+        let input_image;
+        if(e.target.id == "btnAvatar1") {
+            input_image = document.querySelector("#avatar1");
+        } else if (e.target.id == "btnAvatar2") {
+            input_image = document.querySelector("#avatar2");
+        }
         input_image.click();
         input_image.addEventListener("change", loadAvatar);
     }
@@ -34,18 +39,19 @@ function loadMenu() {
 
         let reader = new FileReader();
         let player = e.target.id;
-        reader.addEventListener('load', (e) => setAvatar(e, player))
+        
+        reader.addEventListener('load', (e) => setAvatarPlayer1(e, player))
         reader.readAsDataURL(file);
     }
 
-    function setAvatar(e, player) {
+    function setAvatarPlayer1(e, player) {
         let path = e.target.result;
         let avatar = new Image();
         avatar.src = path;
         avatar.addEventListener('load', function() {
-            if(player == 1) {
+            if(player == "avatar1") {
                 Util.avatarPlayer1 = this;
-            } else if(player == 2) {
+            } else if(player == "avatar2"){
                 Util.avatarPlayer2 = this;
             }
         })

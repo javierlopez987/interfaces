@@ -111,8 +111,8 @@ class Piece {
                 //#region aspect ratio
                 let width = this.radius * 2;
                 let height = this.radius * 2;
-                let img_width = this.fill.width;
-                let img_height = this.fill.height;
+                let img_width = this.owner.avatar.width;
+                let img_height = this.owner.avatar.height;
                 let aspect_ratio = (1.0 * height) / width;
                 let aspect_ratio_img = (1.0 * img_height) / img_width;
                 if(aspect_ratio_img <= aspect_ratio && width < img_width) {
@@ -128,7 +128,7 @@ class Piece {
                     height = img_height;
                 }
                 //#endregion
-                this.ctx.drawImage(this.fill, this.posX - this.radius, this.posY - this.radius, width, height);
+                this.ctx.drawImage(this.owner.avatar, this.posX - this.radius, this.posY - this.radius, width, height);
                 this.ctx.restore();
             }
             //#endregion

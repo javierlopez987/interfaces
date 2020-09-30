@@ -65,6 +65,12 @@ class Game {
         this.player2 = new Player("Player2", null);
         this.player1.setColor('rgba(180, 20, 20, 0.95)');
         this.player2.setColor('rgba(20, 20, 180, 0.95)');
+        if(Util.avatarPlayer1 != null) {
+            this.player1.setAvatar(Util.avatarPlayer1);
+        }
+        if(Util.avatarPlayer2 != null) {
+            this.player2.setAvatar(Util.avatarPlayer2);
+        }
 
         //Configuracion relacionada con piezas
         let pieceRadius = 20;
