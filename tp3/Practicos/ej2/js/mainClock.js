@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let clockConfig = {
         x: WIDTH / 2,
         y: HEIGHT / 2,
-        size: 200,
+        radius: 200,
         ctx: ctx
     }
 
-    let clock = new Clock(clockConfig.x, clockConfig.y, clockConfig.size, clockConfig.ctx);
+    let clock = new Clock(clockConfig.x, clockConfig.y, clockConfig.radius, clockConfig.ctx);
 
     setInterval(clock.draw.bind(clock), 1000);
 
