@@ -1,0 +1,15 @@
+a {
+    background: linear-gradient(to right, red, red 50%, brown 50%);
+    padding: 30px;
+    line-height: 60px;
+    background-size: 300px;
+    transition: background-position 1s ease;
+}
+
+a:hover {
+    background-position: -150px 0;
+}
+
+a.loading {
+    background-position: -150px 0;
+}
