@@ -1,0 +1,26 @@
+main {
+    width: 1366px;
+    height: 768px;
+}
+
+.wrapper {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: wheat;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-content {
+    padding: 20px 20px;
+}
