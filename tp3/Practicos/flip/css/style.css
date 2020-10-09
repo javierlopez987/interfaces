@@ -19,8 +19,22 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 1s ease;
+}
+
+.card:hover {
+    background-color: burlywood;
+    transform: rotateY(180deg);
 }
 
 .card-content {
     padding: 20px 20px;
+}
+
+.front {
+    visibility: visible;
+}
+
+.back {
+    visibility: hidden;
 }
