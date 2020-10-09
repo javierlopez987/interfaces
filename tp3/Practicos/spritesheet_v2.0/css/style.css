@@ -1,0 +1,12 @@
+.character {
+    width: 112px;
+    height: 156px;
+    background: url(https://cdn.rawgit.com/ManzDev/cursos-assets/gh-pages/css3/bernard-sprite.png);
+    animation:walk .8s steps(6) infinite;
+}
+
+@keyframes walk {
+    0% { background-position:0 }
+    100% { background-position:-672px }
+}
+
