@@ -1,0 +1,43 @@
+body {
+    width: 1366px;
+    height: 768px;
+    margin: 40px;
+}
+
+.wrapper {
+    width: 200px;
+    height: 200px;
+    border: 1px solid #CCC;
+    background-color: tomato;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 80%;
+    height: 80%;
+    background-color: wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* perspective function in transform property */
+    transition: transform 1s ease;
+}
+
+.card:hover {
+    background-color: burlywood;
+    transform: perspective(500px) rotateY(180deg) ;
+}
+
+.card-content {
+    padding: 20px 20px;
+}
+
+.front {
+    visibility: visible;
+}
+
+.back {
+    visibility: hidden;
+}
