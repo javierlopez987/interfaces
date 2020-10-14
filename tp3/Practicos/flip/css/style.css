@@ -24,7 +24,7 @@ main {
 
 .card:hover {
     background-color: burlywood;
-    transform: rotateY(180deg);
+    transform: rotateY(45deg);
 }
 
 .card-content {
