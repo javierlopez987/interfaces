@@ -1,0 +1,10 @@
+.parallax {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+img {
+    width: 1366px;
+    height: 768px;
+}
