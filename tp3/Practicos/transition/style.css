@@ -16,8 +16,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* efecto relieve */
-    box-shadow: 2px 2px 4px black;
+    /* efecto profundidad */
+    border: 2px inset rgb(226, 79, 52);
 }
 
 .card {
@@ -27,9 +27,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* efecto profundidad */
-    border: 2px inset rgb(219, 192, 141);
-    /* efecto flip */
+    /* efecto relieve */
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     transition: transform 1s ease-in-out;
 }
 
