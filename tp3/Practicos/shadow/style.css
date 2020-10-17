@@ -1,0 +1,46 @@
+body {
+    width: 800px;
+    margin: 50px auto;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.wrapper {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto relieve */
+    box-shadow: 2px 2px 4px black;
+    /* efecto sombra */
+    position: relative;
+}
+
+.wrapper::after {
+    /* efecto sombra*/
+    content: '';
+    box-shadow: 200px 50px 10px 50px rgb(0, 0, 0, 0.5);
+    position: absolute;
+    width: 50%;
+    right: 75px;
+    transform: skew(-60deg);
+    z-index: -1;
+}
+
+.card {
+    background-color: wheat;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto profundidad */
+    border: 2px inset rgb(219, 192, 141);
+}
