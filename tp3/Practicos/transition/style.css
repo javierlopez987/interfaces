@@ -1,0 +1,63 @@
+body {
+    width: 800px;
+    margin: 50px auto;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto relieve */
+    box-shadow: 2px 2px 4px black;
+}
+
+.card {
+    background-color: wheat;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto profundidad */
+    border: 2px inset rgb(219, 192, 141);
+    /* efecto flip */
+    transition: transform 1s ease-in-out;
+}
+
+.card:hover {
+    background-color: burlywood;
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.back {
+    /* efecto desaparecer */
+    padding: 20px;
+    opacity: 0;
+    transform: rotateY(180deg);
+    transition: opacity 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.front {
+    /* efecto desaparecer */
+    padding: 20px;
+    opacity: 1;
+    transition: opacity 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.card:hover .back {
+    /* efecto desaparecer */
+    opacity: 1;
+}
+
+.card:hover .front {
+    opacity: 0;
+}
