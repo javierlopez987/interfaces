@@ -1,0 +1,79 @@
+body {
+    width: 800px;
+    margin: 50px auto;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto profundidad */
+    border: 2px inset rgb(226, 79, 52);
+}
+
+.card {
+    background-color: wheat;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto relieve */
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    transition: transform 1s ease-in-out;
+}
+
+.card:hover {
+    background-color: burlywood;
+    transform: perspective(500px) rotateY(180deg);
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.back {
+    /* efecto desaparecer */
+    padding: 5px;
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.front {
+    /* efecto desaparecer */
+    padding: 5px;
+    position: absolute;
+    opacity: 1;
+    transition: all 1s cubic-bezier(1, 0, 0, 1);
+}
+
+.card:hover .back {
+    /* efecto desaparecer */
+    opacity: 1;
+    transform: scale(1) rotateY(180deg);
+}
+
+.card:hover .front {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.card-content img {
+    max-width: 100%;
+}
