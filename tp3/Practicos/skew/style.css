@@ -1,0 +1,44 @@
+main {
+    width: 800px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 3s ease;
+}
+
+.wrapper2 {
+    background-color: tomato;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1s linear;
+}
+
+.wrapper2:hover {
+    /* transform: translate(0px, -50px); */
+}
+
+.wrapper2:active {
+    transform: translate(-50px, -50px) skewY(-45deg) scaleX(0.5);
+}
+.card {
+    background-color: wheat;
+    width: 150px;
+    height: 150px;
+}
+
+.card:hover {
+    background-color: burlywood;
+}
