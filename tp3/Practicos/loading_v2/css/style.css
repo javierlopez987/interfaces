@@ -1,0 +1,13 @@
+.loading {
+    width: 300px;
+    border-radius: 50px;
+    background: linear-gradient(to right, red, brown);
+    padding: 30px;
+    line-height: 60px;
+    background-size: 800px;
+    transition: background-position 10s ease;
+}
+
+.loaded {
+    background-position: 400px 0;
+}
