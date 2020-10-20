@@ -5,7 +5,8 @@
     padding: 30px;
     line-height: 60px;
     background-size: 800px;
-    transition: background-position 10s ease;
+    /* transicion coordinada con el progress de JS */
+    transition: background-position 11s linear;
 }
 
 .loaded {

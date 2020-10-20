@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     let statusBar = document.querySelector(".loader");
-    load();
+    let index = 0;
     
-    console.log(statusBar);
+    load();
     
     function load() {
         if(statusBar.classList.toggle("loading")) {
@@ -14,5 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
     function loaded() {
         statusBar.classList.toggle("loaded");
     }
-    console.log(statusBar);
+
+    // Periodo de tiempo debe estar coordinado con 
+    setInterval(progress, 1000)
+    function progress() {
+        let progress = document.querySelector(".progress");
+        previous = index++;
+        if(previous <= 10)
+            progress.innerHTML = previous*10 + "%";
+    }
 })
