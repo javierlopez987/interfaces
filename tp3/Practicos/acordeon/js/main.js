@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    let btnToOpen = document.querySelector("button.closed");
-    console.log(btnToOpen);
-    btnToOpen.addEventListener("click", open);
+    let btnToOpen = document.querySelectorAll("button.closed");
+    btnToOpen.forEach(element => {
+        element.addEventListener("click", open);
+    });
 
-    function open() {
-        let content = document.querySelector(".content");
+    function open(e) {
+        let content = e.target.parentElement.parentElement.nextElementSibling;
         content.classList.toggle("opened");
     }
 })
