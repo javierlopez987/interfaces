@@ -1,0 +1,77 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+/* START CALENDAR STYLE */
+.wrapperContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.wrapper {
+    overflow: hidden;
+    height: 300px;
+    width: 300px;
+    position: relative;
+    margin: 10px;
+}
+
+.head {
+    width: 100%;
+    height: 50px;
+    background-color: tomato;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+} 
+
+.head .title {
+    width: 50%;
+    padding-left: 20px;
+}
+
+.head .buttons {
+    width: 50%;
+    padding-right: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;    
+}
+
+
+article.opened{
+    transform: translateY(0px) scaleY(1);
+    opacity: 1;
+}
+
+.content {
+    background-color: wheat;
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-125px) scaleY(0);
+    transition: transform 2s ease, opacity 1s ease-in;
+    padding-top: 50px;
+    padding-left: 10px;
+    text-align: center;
+    font-size: medium;
+}
+
+button {
+    position: absolute;
+}
+
+.closed {
+    opacity: 1;
+}
+
+.opened {
+    opacity: 0;
+    z-index: -1;
+}
+
+/* END CALENDAR STYLE */
