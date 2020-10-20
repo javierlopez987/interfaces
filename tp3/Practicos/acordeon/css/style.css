@@ -1,0 +1,45 @@
+.wrapper {
+    overflow: hidden;
+    height: 600px;
+    position: relative;
+    padding: 100px;
+}
+
+.head {
+    width: 300px;
+    height: 30px;
+    position: absolute;
+    background-color: tomato;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+} 
+
+article.opened{
+    transform: translateY(30px) scaleY(1);
+    opacity: 1;
+}
+
+.content {
+    background-color: wheat;
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    opacity: 0;
+    z-index: -1;
+    transform: translateY(-100px) scaleY(0);
+    transition: transform 2s ease, opacity 1s ease-in;
+}
+
+button {
+    position: absolute;
+}
+
+.closed {
+    opacity: 1;
+}
+
+.opened {
+    opacity: 0;
+    z-index: -1;
+}
