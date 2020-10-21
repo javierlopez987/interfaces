@@ -6,9 +6,25 @@ document.addEventListener("DOMContentLoaded", function() {
         element.addEventListener("click", open);
     });
 
-    function open(e) {
-        let content = e.target.parentElement.parentElement.nextElementSibling;
+    function open() {
+        console.log(this);
+        this.classList.toggle("closed");
+        let content = this.parentElement.parentElement.nextElementSibling;
         content.classList.toggle("opened");
+        let linkEvent = this.parentElement.parentElement.nextElementSibling.nextElementSibling;
+        linkEvent.classList.toggle("show");
+        linkEvent.firstElementChild.firstElementChild.innerHTML = "Ver Foto";
+        linkEvent.addEventListener("click", showEvent);
+        let btnQuitFoto = linkEvent.nextElementSibling.firstElementChild;
+        btnQuitFoto.addEventListener("click", hide);
     }
     //#endregion
+    
+    function showEvent() {
+        this.nextElementSibling.classList.toggle("show");
+    }
+
+    function hide() {
+        this.parentElement.classList.toggle("show");
+    }
 })
