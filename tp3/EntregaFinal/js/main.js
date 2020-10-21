@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function goHome() {
-        location.replace("../tp3/EntregaFinal/calendar.html");
+        location.replace("/interfaces/tp3/EntregaFinal/calendar.html");
     }
     //#endregion
 })
