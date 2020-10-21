@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
         let btnQuitFoto = linkEvent.nextElementSibling.firstElementChild;
         btnQuitFoto.addEventListener("click", hide);
     }
-    //#endregion
     
     function showEvent() {
         this.nextElementSibling.classList.toggle("show");
@@ -27,4 +26,36 @@ document.addEventListener("DOMContentLoaded", function() {
     function hide() {
         this.parentElement.classList.toggle("show");
     }
+    //#endregion
+
+    //#region LOADER
+    let statusBar = document.querySelector(".loader");
+    let index = 0;
+    
+    load();
+    setTimeout(goHome, 11000);
+    
+    function load() {
+        if(statusBar.classList.toggle("loading")) {
+            setTimeout(loaded, 1000);
+        };
+    }
+
+    function loaded() {
+        statusBar.classList.toggle("loaded");
+    }
+
+    // Periodo de tiempo debe estar coordinado con 
+    setInterval(progress, 1000)
+    function progress() {
+        let progress = document.querySelector(".progress");
+        previous = index++;
+        if(previous <= 10)
+            progress.innerHTML = previous*10 + "%";
+    }
+
+    function goHome() {
+        location.replace("/tp3/EntregaFinal/calendar.html");
+    }
+    //#endregion
 })

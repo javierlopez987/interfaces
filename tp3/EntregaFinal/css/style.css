@@ -183,3 +183,30 @@ button.closed {
 }
 
 /* END FLIP CARDS CALENDAR EVENTS */
+
+/* START LOADER */
+
+.loading {
+    width: 300px;
+    height: 100px;
+    border-radius: 50px;
+    background: linear-gradient(to right, tomato, brown);
+    padding: 30px;
+    line-height: 60px;
+    background-size: 800px;
+    /* transicion coordinada con el progress de JS */
+    transition: background-position 11s linear;
+}
+
+.loaded {
+    background-position: 400px 0;
+}
+
+/* END LOADER */
+
+.mainHome {
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
