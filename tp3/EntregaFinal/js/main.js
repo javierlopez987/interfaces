@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let index = 0;
     
     load();
-    setTimeout(goHome, 11000);
+    setTimeout(goHome, 3200);
     
     function load() {
         if(statusBar.classList.toggle("loading")) {
-            setTimeout(loaded, 1000);
+            setTimeout(loaded, 300);
         };
     }
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Periodo de tiempo debe estar coordinado con css .loading
-    setInterval(progress, 1000)
+    setInterval(progress, 280)
     function progress() {
         let progress = document.querySelector(".progress");
         previous = index++;

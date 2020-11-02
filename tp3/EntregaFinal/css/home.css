@@ -17,31 +17,59 @@ main {
 }
 
 @keyframes move {
-    0% {background-position-x: 766px;}
-    100% {background-position-x: -766px;}
+    0% {background-position-x: 0px;}
+    100% {background-position-x: 1920px;}
 }
 
 .hero .layer {
     position: absolute;
+    background-size: 1920px;
     top: 0;
     left: 0;
     width: 100%;
     height: 1080px;
 }
 
+.scroll {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.scroll img {
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes emphasize {
+    0% {transform: scale(1);}
+    50% {transform: scale(10);}
+    100% {transform: scale(5);}
+}
+
+.hero .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0.8;
+    animation: emphasize 5s forwards ease-in;
+}
+
 .hero .layer:nth-child(1) {
     background-image: url("./img/parallax/01_Sky.png");
-    animation: move 240s infinite linear;
+    animation: move 660s infinite linear;
 }
 
 .hero .layer:nth-child(2) {
     background-image: url("./img/parallax/02_Stars.png");
-    animation: move 230s infinite linear;
+    animation: move 660s infinite linear;
 }
 
 .hero .layer:nth-child(3) {
     background-image: url("./img/parallax/03_Moon.png");
-    animation: move 220s infinite linear;
+    animation: move 600s infinite linear;
 }
 
 .hero .layer:nth-child(4) {
@@ -93,12 +121,12 @@ main {
 
 .post-hero .layer:nth-child(1) {
     background-image: url("./img/parallax/11_Mountains.png");
-    animation: move 80s infinite linear;
+    animation: move 600s infinite linear;
 }
 
 .post-hero .layer:nth-child(2) {
     background-image: url("./img/parallax/12_Desert.png");
-    animation: move 38s infinite linear;
+    animation: move 540s infinite linear;
 }
 
 /* SHOW-IN ELEMENTS */
@@ -193,4 +221,8 @@ main {
 .appear {
     transform: translate(0px) scale(1);
     opacity: 1;
+}
+
+.invisible{
+    visibility: hidden;
 }

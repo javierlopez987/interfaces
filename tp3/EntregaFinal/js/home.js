@@ -15,6 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 element.classList.remove("appear");
             }
         });
+
+        let scrollIcon = document.querySelector(".scroll");
+        const HEIGHT_SCROLL_HIDDEN = 1000;
+        if(window.scrollY > HEIGHT_SCROLL_HIDDEN) {
+            scrollIcon.classList.add("invisible");
+            console.log(document.querySelector(".scroll"));
+        } else {
+            scrollIcon.classList.remove("invisible");
+        }
     }
 
 

@@ -195,7 +195,7 @@ button.closed {
     line-height: 60px;
     background-size: 800px;
     /* transicion coordinada con el progress de JS */
-    transition: background-position 11s linear;
+    transition: background-position 3s linear;
 }
 
 .loaded {
