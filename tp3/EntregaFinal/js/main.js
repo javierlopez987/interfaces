@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         statusBar.classList.toggle("loaded");
     }
 
-    // Periodo de tiempo debe estar coordinado con 
+    // Periodo de tiempo debe estar coordinado con css .loading
     setInterval(progress, 1000)
     function progress() {
         let progress = document.querySelector(".progress");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function goHome() {
-        location.replace("./calendar.html");
+        location.replace("./home.html");
     }
     //#endregion
 })
