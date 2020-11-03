@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     document.addEventListener("scroll", doSth);
-    let wrappers = document.querySelectorAll(".left, .center, .right");
+    let wrappers = document.querySelectorAll(".flip-cards .left,.flip-cards .center,.flip-cards .right");
     
     function doSth(e) {
         let appearanceGate = 450;

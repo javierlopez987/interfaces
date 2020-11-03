@@ -16,20 +16,6 @@ main {
     height: 500px;
 }
 
-@keyframes move {
-    0% {background-position-x: 0px;}
-    100% {background-position-x: 1920px;}
-}
-
-.hero .layer {
-    position: absolute;
-    background-size: 1920px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1080px;
-}
-
 .scroll {
     position: fixed;
     top: 0;
@@ -57,6 +43,20 @@ main {
     animation: emphasize 5s forwards ease-in;
 }
 
+@keyframes move {
+    0% {background-position-x: 0px;}
+    100% {background-position-x: 1920px;}
+}
+
+.hero .layer {
+    position: absolute;
+    background-size: 1920px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1080px;
+}
+
 .hero .layer:nth-child(1) {
     background-image: url("./img/parallax/01_Sky.png");
     animation: move 660s infinite linear;
@@ -80,36 +80,42 @@ main {
 .hero .layer:nth-child(5) {
     background-image: url("./img/parallax/05_Cloud.png");
     animation: move 70s infinite linear;
+    top: 20px;
 }
 
 .hero .layer:nth-child(6) {
     background-image: url("./img/parallax/06_Cloud.png");
     animation: move 60s infinite linear;
+    top: 80px;
 }
 
 .hero .layer:nth-child(7) {
     background-image: url("./img/parallax/07_Cloud.png");
     animation: move 50s infinite linear;
+    top: 100px;
 }
 
 .hero .layer:nth-child(8) {
     background-image: url("./img/parallax/08_Cloud.png");
     animation: move 46s infinite linear;
+    top: 140px;
 }
 
 .hero .layer:nth-child(9) {
     background-image: url("./img/parallax/09_Cloudsmall.png");
     animation: move 44s infinite linear;
+    top: 180px;
 }
 
 .hero .layer:nth-child(10) {
     background-image: url("./img/parallax/10_Cloudsmall.png");
     animation: move 42s infinite linear;
+    top: 220px;
 }
 
 .post-hero {
     position: relative;
-    height: 500px;
+    height: 600px;
 }
 
 .post-hero .layer {
@@ -131,12 +137,12 @@ main {
 }
 
 /* SHOW-IN ELEMENTS */
-.sector {
+.flip-cards {
     margin: 50px auto;
     padding: 10px;
 }
 
-.wrapper {
+.flip-cards .wrapper {
     background-color: tomato;
     width: 300px;
     height: 300px;
@@ -147,7 +153,7 @@ main {
     border: 2px inset rgb(226, 79, 52);
 }
 
-.card {
+.flip-cards .card {
     background-color: wheat;
     width: 75%;
     height: 75%;
@@ -159,12 +165,12 @@ main {
     transition: transform 1s ease-in-out;
 }
 
-.card:hover {
+.flip-cards .card:hover {
     background-color: burlywood;
     transform: perspective(500px) rotateY(180deg);
 }
 
-.card-content {
+.flip-cards .card-content {
     width: 100%;
     height: 100%;
     display: flex;
@@ -173,7 +179,7 @@ main {
     position: relative;
 }
 
-.back {
+.flip-cards .back {
     /* efecto desaparecer */
     padding: 20px;
     position: absolute;
@@ -182,7 +188,7 @@ main {
     transition: all 1s cubic-bezier(1, 0, 0, 1);
 }
 
-.front {
+.flip-cards .front {
     /* efecto desaparecer */
     padding: 20px;
     position: absolute;
@@ -190,40 +196,104 @@ main {
     transition: all 1s cubic-bezier(1, 0, 0, 1);
 }
 
-.card:hover .back {
+.flip-cards .card:hover .back {
     /* efecto desaparecer */
     opacity: 1;
     transform: scale(1) rotateY(180deg);
 }
 
-.card:hover .front {
+.flip-cards .card:hover .front {
     opacity: 0;
     transform: scale(0.5);
 }
 
-.left {
+.flip-cards .left {
     transform: translate(-400px, -200px) scale(0);
     opacity: 0;
     transition: transform 2s ease, opacity 3s ease;
 }
 
-.center {
+.flip-cards .center {
     transform: translate(0px) scale(0);
     opacity: 0;
     transition: transform 2s ease, opacity 3s ease;
 }
 
-.right {
+.flip-cards .right {
     transform: translate(400px, -200px) scale(0);
     opacity: 0;
     transition: transform 2s ease, opacity 3s ease;
 }
 
-.appear {
+.flip-cards .appear {
     transform: translate(0px) scale(1);
     opacity: 1;
 }
 
 .invisible{
     visibility: hidden;
+}
+
+/* SLIDES */
+.slides {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+.slides .wrapper {
+    background-color: tomato;
+    width: 250px;
+    height: 250px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto relieve */
+    box-shadow: 2px 2px 4px black;
+    /* efecto sombra */
+    position: relative;
+    transform: skew(-20deg);
+}
+
+.slides .wrapper::after {
+    /* efecto sombra*/
+    content: '';
+    box-shadow: 200px 50px 10px 50px rgb(0, 0, 0, 0.5);
+    position: absolute;
+    width: 50%;
+    bottom: 0px;
+    /* left: -100px; */
+    transform: skew(-60deg);
+}
+
+.slides .card {
+    background-color: wheat;
+    width: 75%;
+    height: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* efecto profundidad */
+    border: 2px inset rgb(219, 192, 141);
+}
+
+.slider {
+    width: 100px;
+    height: 100px;
+    margin: 0px 50px;
+}
+
+.slides .left {
+    transform: rotate(180deg)
+}
+
+.slides .right {
+    transform: rotate(360deg)
+}
+
+.slider img {
+    width: 100%;
+    height: 100%;
 }
