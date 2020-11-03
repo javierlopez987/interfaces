@@ -1,0 +1,88 @@
+.navbar {
+    background-color: #333;
+    width: 25%;
+    height: 100vh;
+    display: none;
+    animation: fade .5s;
+}
+
+.navbar.active {
+    display: block;
+}
+
+@keyframes fade {
+    from {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+
+.navbar ul {
+    overflow: hidden;
+    list-style-type: none;
+    padding-top: 50%;
+    margin: 0;
+}
+
+.navbar li {
+    display: block;
+    margin: 0;
+    padding: 5% 50px;
+    width: 100%;
+}
+
+.navbar li:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.navbar li a {
+    color: #d3e3e3;
+    text-decoration: none;
+    font-size: 1.6em;
+    /* transition: all .5s; */
+}
+
+.hamburger {
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+    float: left;
+}
+
+.hamburger:hover {
+    cursor: pointer;
+}
+
+.hamburger:hover .line {
+    transform: scaleY(1.5);
+}
+
+.hamburger .line {
+    width: 50px;
+    height: 5px;
+    background-color: black;
+    margin: 8px auto;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.hamburger.active .line {
+    background-color: white;
+}
+
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(1) {
+    transform: translateY(13px) rotate(45deg);
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: translateY(-13px) rotate(-45deg);
+}
