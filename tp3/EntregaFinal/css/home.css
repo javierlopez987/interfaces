@@ -133,7 +133,7 @@ main {
 
 .post-hero .layer:nth-child(2) {
     background-image: url("./img/parallax/12_Desert.png");
-    animation: move 540s infinite linear;
+    animation: move 40s infinite linear;
 }
 
 /* SHOW-IN ELEMENTS */
@@ -143,14 +143,14 @@ main {
 }
 
 .flip-cards .wrapper {
-    background-color: tomato;
+    background-color: rgba(161, 130, 98, 0.8);
     width: 300px;
     height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     /* efecto profundidad */
-    border: 2px inset rgb(226, 79, 52);
+    border: 2px inset rgba(124, 109, 99, 0.836);
 }
 
 .flip-cards .card {
@@ -168,6 +168,7 @@ main {
 .flip-cards .card:hover {
     background-color: burlywood;
     transform: perspective(500px) rotateY(180deg);
+    cursor: pointer;
 }
 
 .flip-cards .card-content {
@@ -239,11 +240,13 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 300px;
     margin-bottom: 200px;
+    position: relative;
 }
 
 .slides .wrapper {
-    background-color: tomato;
+    background-color: rgba(161, 130, 98, 0.8);
     width: 250px;
     height: 250px;
     margin: 10px;
@@ -253,8 +256,15 @@ main {
     /* efecto relieve */
     box-shadow: 2px 2px 4px black;
     /* efecto sombra */
-    position: relative;
-    transform: skew(-20deg);
+    position: absolute;
+    transition: transform 1s ease, opacity 1s ease;
+    opacity: 0;
+    transform: skew(-60deg) translate(250px, -100px);
+}
+
+.slides .slideActive {
+    opacity: 1;
+    transform: skew(-20deg) scale(1) translate(50px);
 }
 
 .slides .wrapper::after {
@@ -270,8 +280,8 @@ main {
 
 .slides .card {
     background-color: wheat;
-    width: 75%;
-    height: 75%;
+    width: 98%;
+    height: 98%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -279,18 +289,35 @@ main {
     border: 2px inset rgb(219, 192, 141);
 }
 
+.slides .card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slides .card-content h1 {
+    transform: scale(3);
+}
+
 .slider {
     width: 100px;
     height: 100px;
-    margin: 0px 50px;
+    margin: 0px 300px;
+    position: relative;
 }
 
-.slides .left {
-    transform: rotate(180deg)
+.slider.left {
+    transform: rotate(180deg) skew(-20deg);
 }
 
-.slides .right {
-    transform: rotate(360deg)
+.slider.right {
+    transform: rotate(360deg) skew(-20deg);
+}
+
+.slider.left:hover, .slider.right:hover {
+    cursor: pointer;
 }
 
 .slider img {
