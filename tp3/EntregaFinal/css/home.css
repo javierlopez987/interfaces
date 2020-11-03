@@ -109,6 +109,7 @@ main {
 
 .post-hero {
     position: relative;
+    height: 500px;
 }
 
 .post-hero .layer {
