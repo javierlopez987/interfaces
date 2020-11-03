@@ -259,12 +259,15 @@ main {
     position: absolute;
     transition: transform 1s ease, opacity 1s ease;
     opacity: 0;
-    transform: skew(-60deg) translate(250px, -100px);
+    z-index: -1;
+    transform: rotateX(90deg) skew(-60deg) translate(500px, 100px);
 }
 
 .slides .slideActive {
     opacity: 1;
-    transform: skew(-20deg) scale(1) translate(50px);
+    perspective: 100px;
+    z-index: 1;
+    transform: rotateX(45deg) skew(-20deg) scale(1) translate(50px);
 }
 
 .slides .wrapper::after {
