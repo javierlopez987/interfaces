@@ -1,8 +1,9 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 3000px;
     background-color: rgba(161, 130, 98, 0.8);
     margin: 0;
+    background-image: url("./img/background1.jpg");
+    background-repeat: no-repeat;
 }
 
 /* HERO */
@@ -110,7 +111,7 @@ body {
 
 .post-hero {
     position: relative;
-    height: 600px;
+    height: 1080px;
 }
 
 .post-hero .layer {
@@ -132,11 +133,15 @@ body {
 }
 
 /* SHOW-IN ELEMENTS */
+#protagonistas {
+    background-image: url("./img/background1.jpg");
+    background-repeat: no-repeat;
+}
+
 .flip-cards {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px auto;
     padding: 10px;
 }
 
@@ -242,9 +247,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    margin-bottom: 200px;
-    position: relative;
+    margin-top: 450px;
+    height: 500px;
+    position: absolute;
 }
 
 .slides .wrapper {
@@ -270,6 +275,10 @@ body {
     perspective: 100px;
     z-index: 1;
     transform: rotateX(45deg) skew(-20deg) scale(1) translate(50px);
+}
+
+.slides .slideActive:hover {
+    transform: scale(3, 2) translate(0px);
 }
 
 .slides .wrapper::after {
@@ -332,12 +341,4 @@ body {
 .slider img {
     width: 100%;
     height: 100%;
-}
-
-.background-footer {
-    height: 200px;
-}
-
-.background-footer img {
-    width: 100%;
 }
