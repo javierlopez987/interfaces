@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
         //#region Menu Hamburguesa
         let hamburger = document.querySelector('.hamburger');
         let menu = document.querySelector('.navbar');
-        let items = document.querySelectorAll(".navbar li a.delay");
+        let items = document.querySelectorAll(".navbar li a");
+        console.log(items);
         
         hamburger.addEventListener('click', function() {
             this.classList.toggle('active');

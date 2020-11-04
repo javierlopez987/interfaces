@@ -178,6 +178,10 @@ body {
     position: relative;
 }
 
+.flip-cards .card-content img {
+    max-width: 100%;
+}
+
 .flip-cards .back {
     /* efecto desaparecer */
     padding: 20px;
@@ -328,4 +332,12 @@ body {
 .slider img {
     width: 100%;
     height: 100%;
+}
+
+.background-footer {
+    height: 200px;
+}
+
+.background-footer img {
+    width: 100%;
 }
