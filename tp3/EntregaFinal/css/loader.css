@@ -3,7 +3,7 @@
     width: 300px;
     height: 100px;
     border-radius: 50px;
-    background: linear-gradient(to right, tomato, brown);
+    background: linear-gradient(to right, rgb(177, 124, 115), rgb(50, 123, 145));
     padding: 30px;
     line-height: 60px;
     background-size: 800px;
