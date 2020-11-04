@@ -3,15 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/loader.css">
+    <script src="./js/home.js"></script>
+    <script src="./js/loader.js"></script>
     <title>Home</title>
 </head>
 <body>
-    <main class="mainHome">
-        <div class="loader">
-            <h1 class="progress">Cargando...</h1>
-        </div>
+    <section class="loading-screen">
+        <section class="loader-container">
+            <div class="loader">
+                <h1 class="progress">Cargando...</h1>
+            </div>
+        </section>
+    </section>
+    <main class="page">
+        <section class="hamburger-container">
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="./index.html#hero">Home</a></li>
+                    <li><a href="./index.html#imagenes">Imagenes</a></li>
+                    <li><a href="./index.html#protagonistas">Protagonistas</a></li>
+                    <li><a href="./events.html">Eventos</a></li>
+                    <li><a href="./comments.html">Comentarios</a></li>
+                </ul>
+            </nav>
+        </section>
+        <section class="hero" id="hero">
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="scroll"><img src="./css/img/scroll-down.png"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="title"><h1>FILM</h1></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+            <div class="layer"></div>
+        </section>
+        <section class="post-hero">
+            <div class="layer"></div>
+            <div class="layer"></div>
+        </section>
+    
+        <section class="slides" id="imagenes">
+            <div class="slider left"><img src="./css/img/slider-arrow.png"></div>
+            <section class="wrapper slideActive">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 1</h1>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 2</h1>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 3</h1>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 4</h1>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 5</h1>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper">
+                <section class="card">
+                    <section class="card-content">
+                        <h1>Card 6</h1>
+                    </section>
+                </section>
+            </section>
+            <div class="slider right"><img src="./css/img/slider-arrow.png"></div>
+        </section>
+        <section class="flip-cards" id="protagonistas">
+            <section class="wrapper left">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper center">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper center">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper right">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </section>
+        <section class="flip-cards">
+            <section class="wrapper left">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper center">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+            <section class="wrapper right">
+                <section class="card">
+                    <section class="card-content">
+                        <article class="front">
+                            Lorem
+                        </article>
+                        <article class="back">
+                            ipsum
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </section>
     </main>
 </body>
 </html>
