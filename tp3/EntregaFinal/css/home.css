@@ -298,6 +298,10 @@ body {
     align-items: center;
 }
 
+.slides .card-content img {
+    max-width: 100%;
+}
+
 .slides .card-content h1 {
     transform: scale(3);
 }
