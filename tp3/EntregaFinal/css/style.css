@@ -106,14 +106,14 @@ button.closed {
 /* END CALENDAR STYLE */
 
 /* START FLIP CARDS CALENDAR EVENTS */
-.events .content {
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.events .wrapperCard {
+.wrapperCard {
     background-color: tomato;
     width: 200px;
     height: 200px;
@@ -127,11 +127,11 @@ button.closed {
     opacity: 0;
 }
 
-.events .wrapperCard:hover {
+.wrapperCard:hover {
     cursor: pointer;
 }
 
-.events .card {
+.card {
     background-color: wheat;
     width: 75%;
     height: 75%;
@@ -143,12 +143,12 @@ button.closed {
     transition: transform 1s ease-in-out;
 }
 
-.events .card:hover {
+.card:hover {
     background-color: burlywood;
     transform: perspective(500px) rotateY(180deg);
 }
 
-.events .card-content {
+.card-content {
     width: 100%;
     height: 100%;
     display: flex;
@@ -157,7 +157,7 @@ button.closed {
     position: relative;
 }
 
-.events .back {
+.back {
     /* efecto desaparecer */
     padding: 5px;
     position: absolute;
@@ -166,7 +166,7 @@ button.closed {
     transition: all 1s cubic-bezier(1, 0, 0, 1);
 }
 
-.events .front {
+.front {
     /* efecto desaparecer */
     padding: 5px;
     position: absolute;
@@ -174,18 +174,18 @@ button.closed {
     transition: all 1s cubic-bezier(1, 0, 0, 1);
 }
 
-.events .card:hover .back {
+.card:hover .back {
     /* efecto desaparecer */
     opacity: 1;
     transform: scale(1) rotateY(180deg);
 }
 
-.events .card:hover .front {
+.card:hover .front {
     opacity: 0;
     transform: scale(0.5);
 }
 
-.events .card-content img {
+.card-content img {
     max-width: 100%;
 }
 
