@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    //#region SLIDER
     let sliderBackward = document.querySelector(".slider.left");
     let sliderForward = document.querySelector(".slider.right");
 
@@ -34,18 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
     function slideBack() {
         slides[slidesPointer].classList.remove("slideActive");
         slidesPointer--;
-        console.log(slides);
-        console.log(slidesPointer);
         if(slidesPointer < 0) {
             slidesPointer = slides.length - 1;
-            console.log("entra el if")
-            console.log(slides[slidesPointer]);
         }
         slides[slidesPointer].classList.add("slideActive");
     }
 
     function slideForward() {
-        console.log(slides[slidesPointer]);
         slides[slidesPointer].classList.remove("slideActive");
         slidesPointer++;
         if(slidesPointer >= slides.length) {
@@ -53,5 +49,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         slides[slidesPointer].classList.add("slideActive");
     }
-
+    //#endregion
 })
