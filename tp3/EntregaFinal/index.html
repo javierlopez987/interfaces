@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/loader.css">
     <link rel="stylesheet" href="./css/burger.css">
+    <link rel="stylesheet" href="./css/countdown.css">
     <script src="./js/home.js"></script>
     <script src="./js/loader.js"></script>
     <script src="./js/burger.js"></script>
+    <script src="./js/countdown.js"></script>
     <title>Home</title>
 </head>
+
 <body>
     <section class="loading-screen">
         <section class="loader-container">
@@ -39,6 +43,7 @@
                 </ul>
             </nav>
         </section>
+
         <section class="hero" id="hero">
             <div class="layer"></div>
             <div class="layer"></div>
@@ -46,18 +51,41 @@
             <div class="scroll"><img src="./css/img/scroll-down.png"></div>
             <div class="layer"></div>
             <div class="layer"></div>
-            <div class="title"><h1>FILM</h1></div>
+            <div class="title">
+                <h1>FILM</h1>
+            </div>
             <div class="layer"></div>
             <div class="layer"></div>
             <div class="layer"></div>
             <div class="layer"></div>
             <div class="layer"></div>
+        </section>
+        <section class="countdown-title">
+            <h2>Lanzamiento</h2>
+        </section>
+        <section class="countdown-container">
+            <div class="days-container">
+                <div class="days"></div>
+                <div class="days-label">dias</div>
+            </div>
+            <div class="hours-container">
+                <div class="hours"></div>
+                <div class="hours-label">horas</div>
+            </div>
+            <div class="minutes-container">
+                <div class="minutes"></div>
+                <div class="minutes-label">minutos</div>
+            </div>
+            <div class="seconds-container">
+                <div class="seconds"></div>
+                <div class="seconds-label">segundos</div>
+            </div>
         </section>
         <section class="post-hero">
             <div class="layer"></div>
             <div class="layer"></div>
         </section>
-    
+
         <section class="slides" id="imagenes">
             <div class="slider left"><img src="./css/img/slider-arrow.png"></div>
             <section class="wrapper slideActive">
@@ -194,4 +222,5 @@
         </section>
     </main>
 </body>
+
 </html>
