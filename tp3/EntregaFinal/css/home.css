@@ -1,6 +1,25 @@
+html {
+    --base-color: #987f61;
+    --primary-color: #d1b087;
+    --secondary-color: #eeddc9;
+    --tertiary-color: #e9ecf1;
+    --quaternary-color: #abc5de;
+    --disabled-color: #9b9b9b;
+    --dark-color: #1d1308;
+    --small-font: 6px;
+    --normal-font: 10px;
+    --big-font: 14px;
+    --h4-font: 18px;
+    --h3-font: 24px;
+    --h2-font: 30px;
+    --h1-font: 18px;
+}
+
 body {
+    margin: 0;
+    padding: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgba(161, 130, 98, 0.8);
+    background-color: var(--base-color);
     margin: 0;
     background-image: url("./img/background1.jpg");
     background-repeat: no-repeat;
