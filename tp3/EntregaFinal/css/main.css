@@ -1,0 +1,45 @@
+html {
+    --base-color: #987f61;
+    --primary-color: #d1b087;
+    --secondary-color: #eeddc9;
+    --tertiary-color: #e9ecf1;
+    --quaternary-color: #abc5de;
+    --disabled-color: #9b9b9b;
+    --dark-color: #1d1308;
+    --small-font: 10px;
+    --normal-font: 12px;
+    --big-font: 14px;
+    --h4-font: 18px;
+    --h3-font: 20px;
+    --h2-font: 22px;
+    --h1-font: 24px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-size: var(--h1-font);
+}
+
+h2 {
+    font-size: var(--h2-font);
+}
+
+h3 {
+    font-size: var(--h3-font);
+}
+
+h4 {
+    font-size: var(--h4-font);
+}
+
+.big {
+    font-size: var(--big-font);
+}
+
+.normal {
+    font-size: var(--normal-font);
+}
+
+.small {
+    font-size: var(--small-font);
+}

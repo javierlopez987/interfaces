@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let page = document.querySelector(".page");
 
         loading.style.display = "none";
-        page.style.display = "block"
+        page.style.display = "initial";
     }
     //#endregion
 

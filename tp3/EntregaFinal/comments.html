@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/form.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/comments.css">
     <link rel="stylesheet" href="./css/loader.css">
     <link rel="stylesheet" href="./css/burger.css">
     <script src="./js/form.js"></script>
@@ -39,16 +40,21 @@
                 </ul>
             </nav>
         </section>
-        <form class="formulario">
-            <h1 class="titulo">Dejanos tu comentario</h1>
-            <input type="text" class="input">
-            <label for="" class="label">Nombre</label>
-            <input type="text" class="input">
-            <label for="" class="label">Email</label>
-            <textarea name="" id="" cols="30" rows="10" class="input"></textarea>
-            <label for="" class="label">Mensaje</label>
-            <button type="submit" class="submit">Comentar</button>
-          </form>
+        <section class="comments-container">
+            <section class="character-selector">
+                <img src="./img/Emma-char.svg" alt="" srcset="">
+            </section>
+            <form class="formulario">
+                <h1 class="titulo">¿Qué opinás?</h1>
+                <label for="" class="label">Nombre</label>
+                <input type="text" class="input">
+                <label for="" class="label">Email</label>
+                <input type="text" class="input">
+                <label for="" class="label">Mensaje</label>
+                <textarea name="" id="" rows="2" class="input"></textarea>
+                <button type="submit" class="submit">Comentar</button>
+              </form>
+        </section>
     </main>
 </body>
 </html>

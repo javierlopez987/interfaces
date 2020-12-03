@@ -48,6 +48,7 @@
 .hamburger {
     padding: 0;
     float: left;
+    z-index: 2;
 }
 
 .hamburger:hover {
@@ -61,6 +62,7 @@
     margin: 8px auto;
     transition: all 0.3s ease-in-out;
     border-radius: 5px;
+    z-index: 2;
 }
 
 .hamburger.active .line:nth-child(2) {
