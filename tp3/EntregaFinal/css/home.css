@@ -2,8 +2,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--base-color);
-    background-image: url("./img/background1.jpg");
-    background-repeat: no-repeat;
 }
 
 /* HERO */
@@ -134,7 +132,7 @@ body {
 
 /* SHOW-IN ELEMENTS */
 #protagonistas {
-    background-image: url("./img/background1.jpg");
+    background-image: url("./img/background1.svg");
     background-repeat: no-repeat;
 }
 

@@ -5,7 +5,7 @@ html {
 body {
     background-color: rgba(161, 130, 98, 0.8);
     margin: 0;
-    background-image: url("./img/background1.jpg");
+    background: url("./img/background1.svg");
 }
 
 .comments-container {
