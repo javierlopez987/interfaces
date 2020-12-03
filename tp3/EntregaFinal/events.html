@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/events.css">
     <link rel="stylesheet" href="./css/loader.css">
     <link rel="stylesheet" href="./css/burger.css">
@@ -11,6 +13,7 @@
     <script src="./js/burger.js"></script>
     <title>Eventos</title>
 </head>
+
 <body>
     <section class="loading-screen">
         <section class="loader-container">
@@ -39,141 +42,78 @@
                 </ul>
             </nav>
         </section>
-        <header>
-            <h1>Entrevistas exclusivas</h1>
-        </header>
-        <section class="events">
-            <section class="wrapperContainer">
-                <main class="wrapperEvent">
-                    <section class="head">
-                        <div class="title">
-                            <h1>Protagonista</h1>
+        <section class="events-container">
+            <header class="events-header">
+                <h1>Entrevistas Exclusivas</h1>
+            </header>
+            <div class="events-accordion">
+                <div class="col">
+                    <div class="tabs">
+                        <div class="tab">
+                            <input type="checkbox" id="chck1" class="toggle-accordion">
+                            <label class="tab-label" for="chck1">Con el protagonista</label>
+                            <div class="tab-content">
+                                <section class="event-image">
+                                    <img src="./img/adam-driver.svg">
+                                </section>
+                                <section class="event-description">
+                                    <h4>Adam Driver</h4>
+                                    <p>Entrevista exclusiva con el actor protagonista antes del estreno mundial</p>
+                                    <span>07/01/2021 18:00</span>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, cum placeat? Magni molestiae vero perferendis, tempora repudiandae sint! At aliquid magnam aspernatur sint qui officia sed consequatur? Amet, qui cupiditate!</p>
+                                </section>
+                            </div>
                         </div>
-                        <div class="buttons">
-                            <button class="closed">></button>
+                        <div class="tab">
+                            <input type="checkbox" id="chck2" class="toggle-accordion">
+                            <label class="tab-label" for="chck2">Con la protagonista</label>
+                            <div class="tab-content">
+                                <section class="event-image">
+                                    <img src="./img/mia-wasikowska.svg">
+                                </section>
+                                <section class="event-description">
+                                    <h4>Mia Wasikowska</h4>
+                                    <p>Entrevista exclusiva con la actriz protagonista antes del estreno mundial</p>
+                                    <span>08/01/2021 18:00</span>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, cum placeat? Magni molestiae vero perferendis, tempora repudiandae sint! At aliquid magnam aspernatur sint qui officia sed consequatur? Amet, qui cupiditate!</p>
+                                </section>
+                            </div>
                         </div>
-                    </section>
-                    <article class="content">
-                        <h1>Mia Wasikowska</h1>
-                        <p>Entrevista exclusiva con la actriz protagonista antes del estreno mundial</p>
-                        <h1>¿Cuándo?</h1>
-                        <p>06/11/2020 18:00</p>
-                    </article>
-                    <section class="mezzanine">
-                        <a class="revealCard"><span></span></a>
-                    </section>
-                    <section class="wrapperCard">
-                        <button class="quit">x</button>
-                        <section class="card">
-                            <section class="card-content">
-                                <article class="front">
-                                    <img src="./css/img/Mia_Wasikowska.jpg" alt="Mia Wasikowska">
-                                </article>
-                                <article class="back">
-                                    Mia Wasikowska
-                                </article>
-                            </section>
-                        </section>
-                    </section>
-                </main>
-                <main class="wrapperEvent">
-                    <section class="head">
-                        <div class="title">
-                            <h1>Protagonista</h1>
+                        <div class="tab">
+                            <input type="checkbox" id="chck3" class="toggle-accordion">
+                            <label class="tab-label" for="chck3">Con el director</label>
+                            <div class="tab-content">
+                                <section class="event-image">
+                                    <img src="./img/john-curran.svg">
+                                </section>
+                                <section class="event-description">
+                                    <h4>John Curran</h4>
+                                    <p>Entrevista exclusiva con el director antes del estreno mundial</p>
+                                    <span>09/01/2021 18:00</span>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, cum placeat? Magni molestiae vero perferendis, tempora repudiandae sint! At aliquid magnam aspernatur sint qui officia sed consequatur? Amet, qui cupiditate!</p>
+                                </section>
+                            </div>
                         </div>
-                        <div class="buttons">
-                            <button class="closed">></button>
+                        <div class="tab">
+                            <input type="checkbox" id="chck4" class="toggle-accordion">
+                            <label class="tab-label" for="chck4">Con el productor</label>
+                            <div class="tab-content">
+                                <section class="event-image">
+                                    <img src="./img/ian-canning.svg">
+                                </section>
+                                <section class="event-description">
+                                    <h4>Iain Canning</h4>
+                                    <p>Entrevista exclusiva con el mejor productor antes del estreno</p>
+                                    <span>10/01/2021 18:00</span>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum, cum placeat? Magni molestiae vero perferendis, tempora repudiandae sint! At aliquid magnam aspernatur sint qui officia sed consequatur? Amet, qui cupiditate!</p>
+                                </section>
+                            </div>
                         </div>
-                    </section>
-                    <article class="content">
-                        <h1>Adam Driver</h1>
-                        <p>Entrevista exclusiva con el actor protagonista antes del estreno mundial</p>
-                        <h1>¿Cuándo?</h1>
-                        <p>07/11/2020 18:00</p>
-                    </article>
-                    <section class="mezzanine">
-                        <a class="revealCard"><span></span></a>
-                    </section>
-                    <section class="wrapperCard">
-                        <button class="quit">x</button>
-                        <section class="card">
-                            <section class="card-content">
-                                <article class="front">
-                                    <img src="./css/img/Adam_Driver.jpg" alt="Adam Driver">
-                                </article>
-                                <article class="back">
-                                    Adam Driver
-                                </article>
-                            </section>
-                        </section>
-                    </section>
-                </main>
-                <main class="wrapperEvent">
-                    <section class="head">
-                        <div class="title">
-                            <h1>Director</h1>
-                        </div>
-                        <div class="buttons">
-                            <button class="closed">></button>
-                        </div>
-                    </section>
-                    <article class="content">
-                        <h1>John Curran</h1>
-                        <p>Entrevista exclusiva con el director antes del estreno mundial</p>
-                        <h1>¿Cuándo?</h1>
-                        <p>08/11/2020 18:00</p>
-                    </article>
-                    <section class="mezzanine">
-                        <a class="revealCard"><span></span></a>
-                    </section>
-                    <section class="wrapperCard">
-                        <button class="quit">x</button>
-                        <section class="card">
-                            <section class="card-content">
-                                <article class="front">
-                                    <img src="./css/img/John_Curran.jpg" alt="Director" srcset="">
-                                </article>
-                                <article class="back">
-                                    John Curran
-                                </article>
-                            </section>
-                        </section>
-                    </section>
-                </main>
-                <main class="wrapperEvent">
-                    <section class="head">
-                        <div class="title">
-                            <h1>Productor</h1>
-                        </div>
-                        <div class="buttons">
-                            <button class="closed">></button>
-                        </div>
-                    </section>
-                    <article class="content">
-                        <h1>Iain Canning</h1>
-                        <p>Entrevista exclusiva con el mejor productor antes del estreno</p>
-                        <h1>¿Cuándo?</h1>
-                        <p>09/11/2020 18:00</p>
-                    </article>
-                    <section class="mezzanine">
-                        <a class="revealCard"><span></span></a>
-                    </section>
-                    <section class="wrapperCard">
-                        <button class="quit">x</button>
-                        <section class="card">
-                            <section class="card-content">
-                                <article class="front">
-                                    <img src="./css/img/Iain_Canning.jpg" alt="Producto" srcset="">
-                                </article>
-                                <article class="back">
-                                    Iain Canning
-                                </article>
-                            </section>
-                        </section>
-                    </section>
-                </main>
-            </section>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 </body>
+
 </html>

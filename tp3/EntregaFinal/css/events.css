@@ -1,206 +1,112 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: rgba(161, 130, 98, 0.8);
+    background-color: var(--base-color);
     margin: 0;
     background-image: url("./img/background1.svg");
 }
 
-header {
-    padding: 100px 20px 20px 20px;
-}
-
-.no-display {
-    display: none;
-}
-
-/* START CALENDAR STYLE */
-.wrapperContainer {
-    display: flex;
-    flex-direction: row;
-}
-
-.wrapperEvent {
-    overflow: hidden;
-    width: 300px;
-    height: 500px;
-    position: relative;
-    margin: 10px;
-}
-
-.head {
-    width: 100%;
-    height: 50px;
-    background-color:  rgba(161, 130, 98);
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-} 
-
-.head .title {
-    width: 50%;
-    padding-left: 20px;
-}
-
-.head .buttons {
-    width: 50%;
-    padding-right: 20px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;    
-}
-
-.head .buttons button:hover {
-    cursor: pointer;
-}
-
-article.opened{
-    transform: translateY(0px) scaleY(1);
-    opacity: 1;
-}
-
-.content {
-    background-color: wheat;
-    position: absolute;
-    width: 100%;
-    max-height: 500px;
-    opacity: 0;
-    z-index: -1;
-    transform: translateY(-125px) scaleY(0);
-    transition: transform 2s ease, opacity 1s ease-in;
-    padding-top: 50px;
-    padding-left: 10px;
-    text-align: center;
-    font-size: medium;
-}
-
-.mezzanine {
-    position: absolute;
-    background: linear-gradient(to right,  rgb(21, 79, 167),  rgb(92, 157, 177), rgb(21, 79, 167));
-    width: 70%;
-    height: 50px;
+.events-header {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration-color: white; 
+    color: var(--dark-color);
+}
+
+.events-accordion {
+    display: flex;
+    justify-content: center;
+}
+
+.events-accordion .col {
+    flex: 0.8;
+}
+
+.events-accordion .col:last-child {
+    margin-left: 1em;
+}
+
+.toggle-accordion {
+    position: absolute;
     opacity: 0;
     z-index: -1;
 }
 
-.mezzanine:hover {
+/* Accordion styles */
+
+.tabs {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
+}
+
+.tab {
+    width: 100%;
+    color: var(--tertiary-color);
+    overflow: hidden;
+}
+
+.tab-label {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: var(--base-color);
+    font-weight: bold;
     cursor: pointer;
 }
 
-.content ~ .show{
-    z-index: 1;
-    opacity: 1;
+.tab-label:hover {
+    background: var(--base-color);
 }
 
-.content ~ .hide{
-    z-index: -1;
-    opacity: 0;
+.tab-label::after {
+    content: "\276F";
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: all .35s;
 }
 
-button.closed {
-    position: absolute;
-    opacity: 1;
+.tab-content {
+    max-height: 0;
+    padding: 0 1em;
+    color: var(--base-color);
+    background: var(--tertiary-color);
+    transition: all .35s;
+    display: flex;
+    justify-content: space-around;
+}
+
+.tab-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    font-size: 0.75em;
+    background: var(--base-color);
+    cursor: pointer;
+}
+
+.tab-close:hover {
+    background: var(--base-color);
+}
+
+input:checked+.tab-label {
+    background: var(--base-color);
+}
+
+input:checked+.tab-label::after {
     transform: rotate(90deg);
 }
 
-button.quit:hover {
-    cursor: pointer;
+input:checked~.tab-content {
+    max-height: 100vh;
+    padding: 1em;
 }
 
-.opened {
-    opacity: 0;
-    z-index: -1;
+.event-image {
+    height: 300px;
+    width: 300px;
 }
 
-/* END CALENDAR STYLE */
-
-/* START FLIP CARDS CALENDAR EVENTS */
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.event-description {
+    padding: 20px;
+    text-align: justify;
 }
-
-.wrapperCard {
-    background-color:  rgba(161, 130, 98, 0.8);
-    width: 200px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* efecto profundidad */
-    border: 2px inset rgba(161, 130, 98, 1);
-    transform: translateY(50px);
-    opacity: 0;
-}
-
-.wrapperCard:hover {
-    cursor: pointer;
-}
-
-.card {
-    background-color: wheat;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* efecto relieve */
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    transition: transform 1s ease-in-out;
-}
-
-.card:hover {
-    background-color: burlywood;
-    transform: perspective(500px) rotateY(180deg);
-}
-
-.card-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.back {
-    /* efecto desaparecer */
-    padding: 5px;
-    position: absolute;
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 1s cubic-bezier(1, 0, 0, 1);
-}
-
-.front {
-    /* efecto desaparecer */
-    padding: 5px;
-    position: absolute;
-    opacity: 1;
-    transition: all 1s cubic-bezier(1, 0, 0, 1);
-}
-
-.card:hover .back {
-    /* efecto desaparecer */
-    opacity: 1;
-    transform: scale(1) rotateY(180deg);
-}
-
-.card:hover .front {
-    opacity: 0;
-    transform: scale(0.5);
-}
-
-.card-content img {
-    max-width: 100%;
-    height: 170px;
-}
-
-/* END FLIP CARDS CALENDAR EVENTS */

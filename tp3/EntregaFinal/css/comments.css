@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background-color: rgba(161, 130, 98, 0.8);
+    background-color: var(--base-color);
     margin: 0;
     background: url("./img/background1.svg");
 }
