@@ -43,3 +43,11 @@ h4 {
 .small {
     font-size: var(--small-font);
 }
+
+
+button {
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px var(--dark-color);
+    cursor: pointer;
+    border: none;
+}
